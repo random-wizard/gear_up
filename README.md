@@ -1,1 +1,3 @@
 # gear_up
+
+Mod for minetest to allow character to equip items; jewelry, armor, outfits, etc... Also has a basic crate system to allow loot boxes to appear in different block types and depths; ice crates, sand crates, deep stone crates, etc...
