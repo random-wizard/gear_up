@@ -1,6 +1,12 @@
 -- cactus helmet
 minetest.register_tool("gear_up:cactus_helmet", {
-	description = ("Cactus Helmet \n" ..core.colorize("#aaaaaa","Equipable \n").. "" ..core.colorize("#aaaaaa","+2% Attack damage \n").. "" ..core.colorize("#aaaaaa","1 Defense").. ""),
+	description = ("Cactus Helmet \n"..
+		core.colorize("#aaaaaa","Equipable \n")..
+		""..
+		core.colorize("#aaaaaa","+2% Attack damage \n")..
+		""..
+		core.colorize("#aaaaaa","1 Defense")..
+		""),
 	inventory_image = "cactus_helmet_inv.png",
 	acc_defense = 1,
 	acc_offense = 2,
@@ -24,7 +30,13 @@ minetest.register_craft({
 
 -- cactus armor
 minetest.register_tool("gear_up:cactus_armor", {
-	description = ("Cactus armor \n" ..core.colorize("#aaaaaa","Equipable \n").. "" ..core.colorize("#aaaaaa","+3% Attack damage \n").. "" ..core.colorize("#aaaaaa","2 Defense").. ""),
+	description = ("Cactus armor \n"..
+		core.colorize("#aaaaaa","Equipable \n")..
+		""..
+		core.colorize("#aaaaaa","+3% Attack damage \n")..
+		""..
+		core.colorize("#aaaaaa","2 Defense")..
+		""),
 	inventory_image = "cactus_armor_inv.png",
 	acc_defense = 2,
 	acc_offense = 3,
@@ -62,7 +74,13 @@ minetest.register_craft({
 
 -- cactus leggings
 minetest.register_tool("gear_up:cactus_leggings", {
-	description = ("Cactus Leggings \n" ..core.colorize("#aaaaaa","Equipable \n").. "" ..core.colorize("#aaaaaa","+2% Attack damage \n").. "" ..core.colorize("#aaaaaa","2 Defense").. ""),
+	description = ("Cactus Leggings \n"..
+		core.colorize("#aaaaaa","Equipable \n")..
+		""..
+		core.colorize("#aaaaaa","+2% Attack damage \n")..
+		""..
+		core.colorize("#aaaaaa","2 Defense")..
+		""),
 	inventory_image = "cactus_leggings_inv.png",
 	acc_defense = 1,
 	acc_offense = 2,
