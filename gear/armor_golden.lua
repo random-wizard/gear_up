@@ -1,6 +1,10 @@
 -- golden helmet
 minetest.register_tool("gear_up:golden_helmet", {
-	description = ("Golden Helmet \n" ..core.colorize("#aaaaaa","Equipable \n").. "" ..core.colorize("#aaaaaa","6 Defense").. ""),
+	description = ("Golden Helmet \n"..
+			core.colorize("#aaaaaa","Equipable \n")..
+			""..
+			core.colorize("#aaaaaa","6 Defense")..
+			""),
 	inventory_image = "golden_helmet_inv.png",
 	acc_defense = 6,
 
@@ -24,7 +28,11 @@ minetest.register_craft({
 
 -- golden platemail
 minetest.register_tool("gear_up:golden_platemail", {
-	description = ("Golden Platemail \n" ..core.colorize("#aaaaaa","Equipable \n").. "" ..core.colorize("#aaaaaa","7 Defense").. ""),
+	description = ("Golden Platemail \n"..
+			core.colorize("#aaaaaa","Equipable \n")..
+			""..
+			core.colorize("#aaaaaa","7 Defense")..
+			""),
 	inventory_image = "golden_platemail_inv.png",
 	acc_defense = 7,
 
@@ -62,7 +70,11 @@ minetest.register_craft({
 
 -- golden leggings
 minetest.register_tool("gear_up:golden_leggings", {
-	description = ("Golden Leggings \n" ..core.colorize("#aaaaaa","Equipable \n").. "" ..core.colorize("#aaaaaa","6 Defense").. ""),
+	description = ("Golden Leggings \n"..
+			core.colorize("#aaaaaa","Equipable \n")..
+			""..
+			core.colorize("#aaaaaa","6 Defense")..
+			""),
 	inventory_image = "golden_leggings_inv.png",
 	acc_defense = 6,
 
@@ -94,7 +106,7 @@ minetest.register_craft({
 
 -- golden boots
 minetest.register_tool("gear_up:golden_boots", {
-	description = ("Golden Boots \n" ..
+	description = ("Golden Boots \n"..
 		core.colorize("#aaaaaa","Equipable \n")..
 		""..core.colorize("#aaaaaa","6 Defense")..
 		""),
