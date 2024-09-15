@@ -70,7 +70,11 @@ minetest.register_craft({
 
 -- bronze leggings
 minetest.register_tool("gear_up:bronze_leggings", {
-	description = ("Bronze Leggings \n" ..core.colorize("#aaaaaa","Equipable \n").. "" ..core.colorize("#aaaaaa","3 Defense").. ""),
+	description = ("Bronze Leggings \n"..
+		core.colorize("#aaaaaa","Equipable \n")..
+		""..
+		core.colorize("#aaaaaa","3 Defense")..
+		""),
 	inventory_image = "bronze_leggings_inv.png",
 	acc_defense = 3,
 
