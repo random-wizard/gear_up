@@ -1,6 +1,12 @@
 -- dungeon helmet
 minetest.register_tool("gear_up:dungeon_helmet", {
-	description = ("Dungeon Warrior Helmet \n" ..core.colorize("#aaaaaa","Equipable \n").. "" ..core.colorize("#aaaaaa","+7% Attack damage \n").. "" ..core.colorize("#aaaaaa","7 Defense").. ""),
+	description = ("Dungeon Warrior Helmet \n"..
+		core.colorize("#aaaaaa","Equipable \n")..
+		""..
+		core.colorize("#aaaaaa","+7% Attack damage \n")..
+		""..
+		core.colorize("#aaaaaa","7 Defense")..
+		""),
 	inventory_image = "dungeon_helmet_inv.png",
 	acc_defense = 7,
 	acc_offense = 7,
@@ -19,7 +25,13 @@ minetest.register_tool("gear_up:dungeon_helmet", {
 
 -- dungeon platemail
 minetest.register_tool("gear_up:dungeon_platemail", {
-	description = ("Dungeon Warrior Platemail \n" ..core.colorize("#aaaaaa","Equipable \n").. "" ..core.colorize("#aaaaaa","+8% Attack damage \n").. "" ..core.colorize("#aaaaaa","8 Defense").. ""),
+	description = ("Dungeon Warrior Platemail \n"..
+		core.colorize("#aaaaaa","Equipable \n")..
+		""..
+		core.colorize("#aaaaaa","+8% Attack damage \n")..
+		""..
+		core.colorize("#aaaaaa","8 Defense")..
+		""),
 	inventory_image = "dungeon_platemail_inv.png",
 	acc_defense = 8,
 	acc_offense = 8,
