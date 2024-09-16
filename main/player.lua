@@ -28,8 +28,13 @@ player_accessory_slots = {
 AccessoryCustomStats = {}
 CountOfAccInvSlots = 24
 
+hud_fireres_bg_ids = {}
+hud_fireres_fg_ids = {}
+
 minetest.register_on_joinplayer(function(player)
-	acc_fire_ressistence_bg =
+	local player_name = player:get_player_name()
+
+	hud_fireres_bg_ids[player_name] =
 		player:hud_add({
 			hud_elem_type = "statbar",
 			name = "acc_fireres_bg",
@@ -41,7 +46,7 @@ minetest.register_on_joinplayer(function(player)
 			alignment = {x = 0, y = -1}
 		})
 
-	acc_fire_ressistence_fg =
+	hud_fireres_fg_ids[player_name] =
 		player:hud_add({
 			hud_elem_type = "statbar",
 			name = "acc_fireres_fg",
@@ -190,7 +195,7 @@ minetest.register_on_joinplayer(function(player)
 	player_acc_visuals[name] = {head={},body={},l_arm={},r_arm={},l_leg={},r_leg={}}
 	local inv = minetest.get_inventory({type="detached",name="accs_"..name..""})
 	for i = 1,CountOfAccInvSlots do
-		current_acc_stack = inv:get_stack("accs",i)
+		local current_acc_stack = inv:get_stack("accs",i)
 		if current_acc_stack:get_definition().acc_slot ~= nil then
 			local accessorySlot = player_accessory_slots[i]
 			update_player_acc_visuals(player,current_acc_stack,1,accessorySlot,i)
@@ -681,6 +686,7 @@ minetest.register_on_player_hpchange(function(player, hp_change, reason)
 	if hp_change < 0 then
 		local defense_to_save_one_hp = 5
 		local playerMeta = player:get_meta()
+		local player_name = player:get_player_name()
 		local AccDefense = playerMeta:get_int("gear_up_gear_defense")
 		local acc_hp_protected = math.floor(AccDefense/defense_to_save_one_hp)
 		local acc_extra_hp_protect_chance = (AccDefense - (acc_hp_protected*defense_to_save_one_hp))
@@ -707,8 +713,8 @@ minetest.register_on_player_hpchange(function(player, hp_change, reason)
 			playerMeta:set_int("acc_last_fire_contact",0)
 			if playerMeta:get_int("acc_remaining_fire_prot") > 0 then
 				playerMeta:set_int("acc_remaining_fire_prot",playerMeta:get_int("acc_remaining_fire_prot")-1)
-				player:hud_change(acc_fire_ressistence_fg, "number", playerMeta:get_int("acc_remaining_fire_prot"))
-				player:hud_change(acc_fire_ressistence_bg, "number", playerMeta:get_int("accessory_fireRes"))
+				player:hud_change(hud_fireres_fg_ids[player_name], "number", playerMeta:get_int("acc_remaining_fire_prot"))
+				player:hud_change(hud_fireres_bg_ids[player_name], "number", playerMeta:get_int("accessory_fireRes"))
 				hp_change = 0
 			end
 		end

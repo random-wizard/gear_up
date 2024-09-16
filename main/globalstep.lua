@@ -54,14 +54,15 @@ minetest.register_globalstep(function(dtime)
 		one_second_timer = 0
 		for _, player in pairs(minetest.get_connected_players()) do
 			local playerMeta = player:get_meta()
-			player:hud_change(acc_fire_ressistence_bg, "number", playerMeta:get_int("accessory_fireRes"))
-			player:hud_change(acc_fire_ressistence_fg, "number", playerMeta:get_int("acc_remaining_fire_prot"))
+			local player_name = player:get_player_name()
+			player:hud_change(hud_fireres_bg_ids[player_name], "number", playerMeta:get_int("accessory_fireRes"))
+			player:hud_change(hud_fireres_fg_ids[player_name], "number", playerMeta:get_int("acc_remaining_fire_prot"))
 			if playerMeta:get_int("acc_last_fire_contact") <= 3 then
 				playerMeta:set_int("acc_last_fire_contact",playerMeta:get_int("acc_last_fire_contact")+1)
 			end
 			if playerMeta:get_int("acc_remaining_fire_prot") >= playerMeta:get_int("accessory_fireRes") then
-				player:hud_change(acc_fire_ressistence_bg, "number", 0)
-				player:hud_change(acc_fire_ressistence_fg, "number", 0)
+				player:hud_change(hud_fireres_bg_ids[player_name], "number", 0)
+				player:hud_change(hud_fireres_fg_ids[player_name], "number", 0)
 			end
 		end
 	end
@@ -71,11 +72,11 @@ minetest.register_globalstep(function(dtime)
 		quarter_second_timer = 0
 		for _, player in pairs(minetest.get_connected_players()) do
 			local playerMeta = player:get_meta()
-			local name = player:get_player_name()
+			local player_name = player:get_player_name()
 			local pos = player:getpos()
 			if playerMeta:get_int("acc_last_fire_contact") >= 3 and playerMeta:get_int("acc_remaining_fire_prot") < playerMeta:get_int("accessory_fireRes") then
 				playerMeta:set_int("acc_remaining_fire_prot",playerMeta:get_int("acc_remaining_fire_prot")+1)
-				player:hud_change(acc_fire_ressistence_fg, "number", playerMeta:get_int("acc_remaining_fire_prot"))
+				player:hud_change(hud_fireres_fg_ids[player_name], "number", playerMeta:get_int("acc_remaining_fire_prot"))
 			end
 			if playerMeta:get_int("acc_remaining_fire_prot") >playerMeta:get_int("accessory_fireRes") then
 				playerMeta:set_int("acc_remaining_fire_prot",playerMeta:get_int("accessory_fireRes"))
@@ -107,7 +108,7 @@ minetest.register_globalstep(function(dtime)
 			end
 
 			--check if mining helmet and use glow
-			if PlayerHasAccEquipped(name,"gear_up:mining_helmet") == true then
+			if PlayerHasAccEquipped(player_name,"gear_up:mining_helmet") == true then
 				local gpos = player:getpos()
 				gpos.y = gpos.y+1
 				local node = minetest.get_node(gpos)
