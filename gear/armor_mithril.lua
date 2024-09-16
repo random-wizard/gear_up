@@ -1,6 +1,12 @@
 -- mithril helmet
 minetest.register_tool("gear_up:mithril_helmet", {
-	description = ("Mithril Helmet \n" ..core.colorize("#aaaaaa","Equipable \n").. "" ..core.colorize("#aaaaaa","+4 Max HP \n").. "" ..core.colorize("#aaaaaa","8 Defense").. ""),
+	description = ("Mithril Helmet \n"..
+		core.colorize("#aaaaaa","Equipable \n")..
+		""..
+		core.colorize("#aaaaaa","+4 Max HP \n")..
+		""..
+		core.colorize("#aaaaaa","8 Defense")..
+		""),
 	inventory_image = "mithril_helmet_inv.png",
 	acc_defense = 8,
 	acc_hpBonus = 4,
@@ -25,7 +31,13 @@ minetest.register_craft({
 
 -- mithril platemail
 minetest.register_tool("gear_up:mithril_platemail", {
-	description = ("Mithril Platemail \n" ..core.colorize("#aaaaaa","Equipable \n").. "" ..core.colorize("#aaaaaa","+7% Attack damage \n").. "" ..core.colorize("#aaaaaa","9 Defense").. ""),
+	description = ("Mithril Platemail \n"..
+		core.colorize("#aaaaaa","Equipable \n")..
+		""..
+		core.colorize("#aaaaaa","+7% Attack damage \n")..
+		""..
+		core.colorize("#aaaaaa","9 Defense")..
+		""),
 	inventory_image = "mithril_platemail_inv.png",
 	acc_defense = 9,
 	acc_offense = 7,
@@ -64,7 +76,13 @@ minetest.register_craft({
 
 -- mithril leggings
 minetest.register_tool("gear_up:mithril_leggings", {
-	description = ("mithril Leggings \n" ..core.colorize("#aaaaaa","Equipable \n").. "" ..core.colorize("#aaaaaa","Walking Speed + 15% \n").. "" ..core.colorize("#aaaaaa","8 Defense").. ""),
+	description = ("mithril Leggings \n"..
+		core.colorize("#aaaaaa","Equipable \n")..
+		""..
+		core.colorize("#aaaaaa","Walking Speed + 15% \n")..
+		""..
+		core.colorize("#aaaaaa","8 Defense")..
+		""),
 	inventory_image = "mithril_leggings_inv.png",
 	acc_defense = 8,
 	acc_walkSpeed = 0.15,
