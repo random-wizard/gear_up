@@ -164,7 +164,9 @@ minetest.register_globalstep(function(dtime)
 			end
 		end
 		--calculate hp regen
-		if player:get_hp() < player:get_properties().hp_max then
+		local player_properties = player:get_properties()
+		local player_hp = player:get_hp()
+		if player_hp < player_properties.hp_max then
 			local playerMeta = player:get_meta()
 			local hpRegenAmount = playerMeta:get_float("gear_up_gear_hp_regen")
 			local finalHpRegen = (dtime * hpRegenAmount)
