@@ -1,5 +1,5 @@
 visual_reapply_interval = 90
-local ReapplyIntPassed = 0
+local reapply_int_passed = 0
 local quarter_second_timer = 0
 local one_second_timer = 0
 
@@ -32,9 +32,9 @@ minetest.register_globalstep(function(dtime)
 
 	--every so often update the player accessories visuals
 	if visual_reapply_interval > 0 then
-		ReapplyIntPassed = ReapplyIntPassed + dtime
-		if ReapplyIntPassed >= visual_reapply_interval then
-			ReapplyIntPassed = 0
+		reapply_int_passed = reapply_int_passed + dtime
+		if reapply_int_passed >= visual_reapply_interval then
+			reapply_int_passed = 0
 			for _, player in pairs(minetest.get_connected_players()) do
 				local name = player:get_player_name()
 				local inv = minetest.get_inventory({type="detached",name="accs_gear_"..name..""})
