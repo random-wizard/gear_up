@@ -4,7 +4,6 @@ flag_wings_can_fly = true
 local modpath = minetest.get_modpath(minetest.get_current_modname())
 
 dofile(modpath.."/gear/parts.lua")
-dofile(modpath.."/gear/colorizers.lua")
 dofile(modpath.."/gear/outfits.lua")
 dofile(modpath.."/gear/outfits_good.lua")
 dofile(modpath.."/gear/outfits_bad.lua")
@@ -27,6 +26,8 @@ dofile(modpath.."/gear/masks.lua")
 dofile(modpath.."/gear/mouth.lua")
 
 dofile(modpath.."/main/gear_sets.lua")
+
+dofile(modpath.."/color/dyes.lua")
 
 --old man murray would be proud
 dofile(modpath.."/crates/crate_type1.lua")
