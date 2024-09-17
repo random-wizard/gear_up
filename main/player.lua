@@ -143,14 +143,19 @@ minetest.register_on_joinplayer(function(player)
 			return 1
 		end,
 		on_move = function(inv, from_list, from_index, to_list, to_index, count, player)
+			--search for the gear slot that matches the color slot and change gear color
 			local from_slot = player_accessory_slots[from_index]
 			local from_inv = minetest.get_inventory({type="detached", name="accs_"..name..""})
 			local from_stack = from_inv:get_stack("accs", from_index)
-			update_player_acc_visuals(player, from_stack, 1, from_slot, from_index)
+			if from_stack:get_definition().acc_slot ~= nil then
+				update_player_acc_visuals(player, from_stack, 1, from_slot, from_index)
+			end
 			local to_slot = player_accessory_slots[to_index]
 			local to_inv = minetest.get_inventory({type="detached", name="accs_"..name..""})
 			local to_stack = to_inv:get_stack("accs", to_index)
-			update_player_acc_visuals(player, to_stack, 1, to_slot, to_index)
+			if to_stack:get_definition().acc_slot ~= nil then
+				update_player_acc_visuals(player, to_stack, 1, to_slot, to_index)
+			end
 		end,
 		allow_put = function(inv,listname,index,stack,player)
 			if stack:get_definition().accessory_dye ~= nil then
@@ -160,6 +165,7 @@ minetest.register_on_joinplayer(function(player)
 			end
 		end,
 		on_put = function(inv,listname,index,stack,player)
+			--search for the gear slot that matches the color slot and change gear color
 			local accSlot = player_accessory_slots[index]
 			update_player_acc_visuals(player,stack,1,accSlot,index)
 			local a_inv = minetest.get_inventory({type="detached",name="accs_"..name..""})
@@ -174,6 +180,7 @@ minetest.register_on_joinplayer(function(player)
 			playerMeta:set_string("accessory_dye_inv",(minetest.serialize(ser_acc_table)))
 		end,
 		on_take = function(inv,listname,index,stack,player)
+			--search for the gear slot that matches the color slot and change gear color
 			local accSlot = player_accessory_slots[index]
 			local a_inv = minetest.get_inventory({type="detached",name="accs_"..name..""})
 			local current_acc_stack = a_inv:get_stack("accs",index)
