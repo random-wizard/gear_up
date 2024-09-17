@@ -129,7 +129,7 @@ minetest.register_globalstep(function(dtime)
 					collisiondetection = false,
 					collision_removal = false,
 					vertical = false,
-					texture = "jojo_menancing_trail.png",
+					texture = "jojo_menacing_trail.png",
 					animation = {type="vertical_frames", aspect_w=8, aspect_h=8, length = 0.25,},
 					glow = 10,
 				})
