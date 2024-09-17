@@ -140,7 +140,17 @@ minetest.register_on_joinplayer(function(player)
 	--start create_detached_inventory accs_dye--
 	minetest.create_detached_inventory("accs_dye_"..name.."",{
 		allow_move = function(inv,from_list,from_index,to_list,to_index,count,player)
-			return 0
+			return 1
+		end,
+		on_move = function(inv, from_list, from_index, to_list, to_index, count, player)
+			local from_slot = player_accessory_slots[from_index]
+			local from_inv = minetest.get_inventory({type="detached", name="accs_"..name..""})
+			local from_stack = from_inv:get_stack("accs", from_index)
+			update_player_acc_visuals(player, from_stack, 1, from_slot, from_index)
+			local to_slot = player_accessory_slots[to_index]
+			local to_inv = minetest.get_inventory({type="detached", name="accs_"..name..""})
+			local to_stack = to_inv:get_stack("accs", to_index)
+			update_player_acc_visuals(player, to_stack, 1, to_slot, to_index)
 		end,
 		allow_put = function(inv,listname,index,stack,player)
 			if stack:get_definition().accessory_dye ~= nil then
