@@ -1,6 +1,10 @@
 -- silver helmet
 minetest.register_tool("gear_up:silver_helmet", {
-	description = ("Silver Helmet \n" ..core.colorize("#aaaaaa","Equipable \n").. "" ..core.colorize("#aaaaaa","5 Defense").. ""),
+	description = ("Silver Helmet \n"..
+			core.colorize("#aaaaaa","Equipable \n")..
+			""..
+			core.colorize("#aaaaaa","5 Defense")..
+			""),
 	inventory_image = "silver_helmet_inv.png",
 	acc_defense = 5,
 
@@ -24,7 +28,11 @@ minetest.register_craft({
 
 -- silver platemail
 minetest.register_tool("gear_up:silver_platemail", {
-	description = ("Silver Platemail \n" ..core.colorize("#aaaaaa","Equipable \n").. "" ..core.colorize("#aaaaaa","6 Defense").. ""),
+	description = ("Silver Platemail \n"..
+			core.colorize("#aaaaaa","Equipable \n")..
+			""..
+			core.colorize("#aaaaaa","6 Defense")..
+			""),
 	inventory_image = "silver_platemail_inv.png",
 	acc_defense = 6,
 	acc_slot = "armor_acc",
@@ -61,7 +69,11 @@ minetest.register_craft({
 
 -- silver leggings
 minetest.register_tool("gear_up:silver_leggings", {
-	description = ("Silver Leggings \n" ..core.colorize("#aaaaaa","Equipable \n").. "" ..core.colorize("#aaaaaa","5 Defense").. ""),
+	description = ("Silver Leggings \n"..
+			core.colorize("#aaaaaa","Equipable \n")..
+			""..
+			core.colorize("#aaaaaa","5 Defense")..
+			""),
 	inventory_image = "silver_leggings_inv.png",
 	acc_defense = 5,
 
