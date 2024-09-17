@@ -6,7 +6,7 @@
 function display_gear_up_gear_screen(player)
 	local name = player:get_player_name()
 	local playerMeta = player:get_meta()
-	gear_up_gear_form =(
+	local gear_up_gear_form =(
 	"size[8,11]"..
 	"list[current_player;main;0,6.5;8,4;]"..
 	"image[0,0.0;9.75,3.3;gear_up_gear_inv_bg.png]"..
@@ -33,7 +33,7 @@ end
 function display_gear_up_color_screen(player)
 	local name = player:get_player_name()
 	local playerMeta = player:get_meta()
-	gear_up_color_form =(
+	local gear_up_color_form =(
 	"size[8,11]"..
 	"list[current_player;main;0,6.5;8,4;]"..
 	"image[0,0.0;9.75,3.3;gear_up_color_inv_bg.png]"..
@@ -48,7 +48,7 @@ end
 function display_gear_up_select_screen(player)
 	local name = player:get_player_name()
 	local playerMeta = player:get_meta()
-	AccSelectUI =(
+	local AccSelectUI =(
 		"size[6,9]"..
 		"label[2.0,1.0;Bling Bling]"..
 		"button[1,3.0;4,1;gear_up_gear;Gear]"..

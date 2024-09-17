@@ -215,14 +215,14 @@ end)
 minetest.register_on_player_receive_fields(function(player, formname, fields)
 	if fields["gear_up_gear"] then
 		local name = player:get_player_name()
-		inv = minetest.get_inventory({type="detached",name="accs_"..name..""})
+		local inv = minetest.get_inventory({type="detached",name="accs_"..name..""})
 		inv:set_size("accs",CountOfAccInvSlots)
 		inv:set_width("accs",8)
 		display_gear_up_gear_screen(player)
 	end
 	if fields["gear_up_color"] then
 		local name = player:get_player_name()
-		inv = minetest.get_inventory({type="detached",name="accs_dye_"..name..""})
+		local inv = minetest.get_inventory({type="detached",name="accs_dye_"..name..""})
 		inv:set_size("accs",CountOfAccInvSlots)
 		inv:set_width("accs",8)
 		display_gear_up_color_screen(player)
