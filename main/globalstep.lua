@@ -37,9 +37,9 @@ minetest.register_globalstep(function(dtime)
 			ReapplyIntPassed = 0
 			for _, player in pairs(minetest.get_connected_players()) do
 				local name = player:get_player_name()
-				inv = minetest.get_inventory({type="detached",name="accs_"..name..""})
+				local inv = minetest.get_inventory({type="detached",name="accs_"..name..""})
 				for i = 1,CountOfAccInvSlots do
-					current_acc_stack = inv:get_stack("accs",i)
+					local current_acc_stack = inv:get_stack("accs",i)
 					if current_acc_stack:get_definition().acc_slot ~= nil then
 						local accessorySlot = player_accessory_slots[i]
 						update_player_acc_visuals(player,current_acc_stack,1,accessorySlot,i)
