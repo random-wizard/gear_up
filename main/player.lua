@@ -31,6 +31,7 @@ CountOfAccInvSlots = 24
 hud_fireres_bg_ids = {}
 hud_fireres_fg_ids = {}
 
+--start register on_joinplayer--
 minetest.register_on_joinplayer(function(player)
 	local player_name = player:get_player_name()
 
@@ -237,6 +238,7 @@ minetest.register_on_joinplayer(function(player)
 	end, player)
 
 end)
+--stop register on_joinplayer--
 
 minetest.register_on_leaveplayer(function(player)
 	local name = player:get_player_name()
