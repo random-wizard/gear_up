@@ -38,7 +38,7 @@ function display_gear_up_color_screen(player)
 	"list[current_player;main;0,6.5;8,4;]"..
 	"image[0,0.0;9.75,3.3;gear_up_color_inv_bg.png]"..
 	"label[0.0,4.2;".."Equip Magic Dye Jars to change color of equipped Gear".."]"..
-	"list[detached:accs_dye_"..name..";accs_dye;0,0.0;8,3;]"..
+	"list[detached:accs_color_"..name..";color_ss;0,0.0;8,3;]"..
 	"button_exit[4,10.5;2,1;exit;Done]")
 	minetest.show_formspec(name,"gear_up:gear_up_color_form", gear_up_color_form)
 end

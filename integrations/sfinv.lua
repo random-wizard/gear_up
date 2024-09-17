@@ -35,7 +35,7 @@
 				"size[8,11]"..
 				"image[0,0.0;9.75,3.3;gear_up_color_inv_bg.png]"..
 				"label[0.0,4.2;".."Equip Magic Dye Jars to change color of equipped Gear".."]"..
-				"list[detached:accs_dye_"..name..";accs_dye;0,0.0;8,3;]")
+				"list[detached:accs_color_"..name..";color_ss;0,0.0;8,3;]")
 			return sfinv.make_formspec(player, context, gear_up_color_formspec, true)
 		end,
 	})
