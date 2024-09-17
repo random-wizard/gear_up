@@ -80,7 +80,10 @@ minetest.register_on_joinplayer(function(player)
 	local accessory_content = minetest.deserialize(playerMeta:get_string("accessory_inv"))
 	local accessory_dye_content = minetest.deserialize(playerMeta:get_string("accessory_dye_inv"))
 
-	--start create_detached_inventory accs--
+	--gear_up_gear
+	--"accs_gear_"..name..""
+	--"gear_ss"
+	--start create_detached_inventory accs_gear_--
 	minetest.create_detached_inventory("accs_gear_"..name.."",{
 		allow_move = function(inv,from_list,from_index,to_list,to_index,count,player)
 			return 0
@@ -137,7 +140,10 @@ minetest.register_on_joinplayer(function(player)
 	})
 	--stop create_detached_inventory accs--
 
-	--start create_detached_inventory color_ss--
+	--gear_up_color
+	--"accs_color_"..name..""
+	--"color_ss"
+	--start create_detached_inventory accs_color_--
 	minetest.create_detached_inventory("accs_color_"..name.."",{
 		allow_move = function(inv,from_list,from_index,to_list,to_index,count,player)
 			return 1
