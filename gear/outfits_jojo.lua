@@ -32,7 +32,13 @@ minetest.register_craft({
 
 -- menacing student jacket
 minetest.register_tool("gear_up:menacing_student_jacket", {
-	description = ("Menacing student jacket \n" ..core.colorize("#aaaaaa","Equipable \n").. "" ..core.colorize("#aaaaaa","+4% Attack Damage \n").. "" ..core.colorize("#aaaaaa","2 Defense").. ""),
+	description = ("Menacing student jacket \n"..
+		core.colorize("#aaaaaa","Equipable \n")..
+		""..
+		core.colorize("#aaaaaa","+4% Attack Damage \n")..
+		""..
+		core.colorize("#aaaaaa","2 Defense")..
+		""),
 	inventory_image = "jojo_shirt_inv.png",
 	acc_defense = 2,
 	acc_offense = 4,
@@ -71,7 +77,13 @@ minetest.register_craft({
 
 -- menacing student pants
 minetest.register_tool("gear_up:menacing_student_pants", {
-	description = ("Menacing Student Pants \n" ..core.colorize("#aaaaaa","Equipable \n").. "" ..core.colorize("#aaaaaa","+3% Attack Damage \n").. "" ..core.colorize("#aaaaaa","1 Defense").. ""),
+	description = ("Menacing Student Pants \n"..
+		core.colorize("#aaaaaa","Equipable \n")..
+		""..
+		core.colorize("#aaaaaa","+3% Attack Damage \n")..
+		""..
+		core.colorize("#aaaaaa","1 Defense")..
+		""),
 	inventory_image = "jojo_pants_inv.png",
 	acc_defense = 1,
 	acc_offense = 3,
