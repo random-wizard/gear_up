@@ -113,6 +113,10 @@ minetest.register_on_joinplayer(function(player)
 			end
 			playerMeta:set_string("accessory_inv",(minetest.serialize(ser_acc_table)))
 			update_accessory_stats(player)
+			if minetest.get_modpath("sfinv") then
+				--by setting the form page the form page gets redrawn
+				sfinv.set_page(player, "sfinv:gear_up_gear")
+			end
 			--display_gear_up_gear_screen(player)
 		end,
 		on_take = function(inv,listname,index,stack,player)
@@ -124,6 +128,10 @@ minetest.register_on_joinplayer(function(player)
 			end
 			playerMeta:set_string("accessory_inv",(minetest.serialize(ser_acc_table)))
 			update_accessory_stats(player)
+			if minetest.get_modpath("sfinv") then
+				--by setting the form page the form page gets redrawn
+				sfinv.set_page(player, "sfinv:gear_up_gear")
+			end
 			--display_gear_up_gear_screen(player)
 		end,
 	})
