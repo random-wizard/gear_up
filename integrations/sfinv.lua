@@ -2,7 +2,7 @@
 		title = "Gear",
 		get = function(self, player, context)
 			local name = player:get_player_name()
-			inv = minetest.get_inventory({type="detached",name="accs_"..name..""})
+			local inv = minetest.get_inventory({type="detached",name="accs_"..name..""})
 			inv:set_size("accs",CountOfAccInvSlots)
 			inv:set_width("accs",8)
 			local playerMeta = player:get_meta()
