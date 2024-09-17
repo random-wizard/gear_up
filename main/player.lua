@@ -70,16 +70,16 @@ minetest.register_on_joinplayer(function(player)
 		playerMeta:set_string("accessory_gear_inv",(minetest.serialize(temp_empty_accs_table)))
 	end
 
-	if playerMeta:get_string("accessory_dye_inv") == "" then
+	if playerMeta:get_string("accessory_color_inv") == "" then
 		local temp_empty_dyeaccs_table = {}
 		for i=1,CountOfAccInvSlots do
 			temp_empty_dyeaccs_table[i] = ""
 		end
-		playerMeta:set_string("accessory_dye_inv",(minetest.serialize(temp_empty_dyeaccs_table)))
+		playerMeta:set_string("accessory_color_inv",(minetest.serialize(temp_empty_dyeaccs_table)))
 	end
 
 	local accessory_content = minetest.deserialize(playerMeta:get_string("accessory_gear_inv"))
-	local accessory_dye_content = minetest.deserialize(playerMeta:get_string("accessory_dye_inv"))
+	local accessory_dye_content = minetest.deserialize(playerMeta:get_string("accessory_color_inv"))
 
 	--gear_up_gear
 	--"accs_gear_"..name..""
@@ -184,7 +184,7 @@ minetest.register_on_joinplayer(function(player)
 			for serAcc,accStack in ipairs(inv:get_list("color_ss")) do
 				table.insert(ser_acc_table, accStack:to_string())
 			end
-			playerMeta:set_string("accessory_dye_inv",(minetest.serialize(ser_acc_table)))
+			playerMeta:set_string("accessory_color_inv",(minetest.serialize(ser_acc_table)))
 		end,
 		on_take = function(inv,listname,index,stack,player)
 			--search for the gear slot that matches the color slot and change gear color
@@ -198,7 +198,7 @@ minetest.register_on_joinplayer(function(player)
 			for serAcc,accStack in ipairs(inv:get_list("color_ss")) do
 				table.insert(ser_acc_table, accStack:to_string())
 			end
-			playerMeta:set_string("accessory_dye_inv",(minetest.serialize(ser_acc_table)))
+			playerMeta:set_string("accessory_color_inv",(minetest.serialize(ser_acc_table)))
 		end,
 	})
 	--stop create_detached_inventory color_ss--
@@ -214,7 +214,7 @@ minetest.register_on_joinplayer(function(player)
 	end
 
 	if accessory_dye_content ~= nil then
-		local accList = minetest.deserialize(playerMeta:get_string("accessory_dye_inv"))
+		local accList = minetest.deserialize(playerMeta:get_string("accessory_color_inv"))
 		local accItemList = {}
 		for serAcc,accStack in ipairs(accList) do
 			table.insert(accItemList, ItemStack(accStack))
