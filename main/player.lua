@@ -61,12 +61,12 @@ minetest.register_on_joinplayer(function(player)
 	local name = player:get_player_name()
 	local playerMeta = player:get_meta()
 
-	if playerMeta:get_string("accessory_inv") == "" then
+	if playerMeta:get_string("accessory_gear_inv") == "" then
 		local temp_empty_accs_table = {}
 		for i=1,CountOfAccInvSlots do
 			temp_empty_accs_table[i] = ""
 		end
-		playerMeta:set_string("accessory_inv",(minetest.serialize(temp_empty_accs_table)))
+		playerMeta:set_string("accessory_gear_inv",(minetest.serialize(temp_empty_accs_table)))
 	end
 
 	if playerMeta:get_string("accessory_dye_inv") == "" then
@@ -77,7 +77,7 @@ minetest.register_on_joinplayer(function(player)
 		playerMeta:set_string("accessory_dye_inv",(minetest.serialize(temp_empty_dyeaccs_table)))
 	end
 
-	local accessory_content = minetest.deserialize(playerMeta:get_string("accessory_inv"))
+	local accessory_content = minetest.deserialize(playerMeta:get_string("accessory_gear_inv"))
 	local accessory_dye_content = minetest.deserialize(playerMeta:get_string("accessory_dye_inv"))
 
 	--gear_up_gear
@@ -114,7 +114,7 @@ minetest.register_on_joinplayer(function(player)
 			for serAcc,accStack in ipairs(inv:get_list("gear_ss")) do
 				table.insert(ser_acc_table, accStack:to_string())
 			end
-			playerMeta:set_string("accessory_inv",(minetest.serialize(ser_acc_table)))
+			playerMeta:set_string("accessory_gear_inv",(minetest.serialize(ser_acc_table)))
 			update_accessory_stats(player)
 			if minetest.get_modpath("sfinv") then
 				--by setting the form page the form page gets redrawn
@@ -129,7 +129,7 @@ minetest.register_on_joinplayer(function(player)
 			for serAcc,accStack in ipairs(inv:get_list("gear_ss")) do
 				table.insert(ser_acc_table, accStack:to_string())
 			end
-			playerMeta:set_string("accessory_inv",(minetest.serialize(ser_acc_table)))
+			playerMeta:set_string("accessory_gear_inv",(minetest.serialize(ser_acc_table)))
 			update_accessory_stats(player)
 			if minetest.get_modpath("sfinv") then
 				--by setting the form page the form page gets redrawn
@@ -203,7 +203,7 @@ minetest.register_on_joinplayer(function(player)
 	--stop create_detached_inventory color_ss--
 
 	if accessory_content ~= nil then
-		local accList = minetest.deserialize(playerMeta:get_string("accessory_inv"))
+		local accList = minetest.deserialize(playerMeta:get_string("accessory_gear_inv"))
 		local accItemList = {}
 		for serAcc,accStack in ipairs(accList) do
 			table.insert(accItemList, ItemStack(accStack))
