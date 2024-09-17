@@ -81,13 +81,13 @@ minetest.register_on_joinplayer(function(player)
 	local accessory_dye_content = minetest.deserialize(playerMeta:get_string("accessory_dye_inv"))
 
 	--start create_detached_inventory accs--
-	minetest.create_detached_inventory("accs_"..name.."",{
+	minetest.create_detached_inventory("accs_gear_"..name.."",{
 		allow_move = function(inv,from_list,from_index,to_list,to_index,count,player)
 			return 0
 		end,
 		allow_put = function(inv,listname,index,stack,player)
 			if stack:get_definition().acc_slot ~= nil then
-				if stack:get_definition().acc_slot == player_accessory_slots[index] and (inv:get_stack("accs",index):get_name() ~= stack:get_name()) then
+				if stack:get_definition().acc_slot == player_accessory_slots[index] and (inv:get_stack("gear_ss",index):get_name() ~= stack:get_name()) then
 					return 1
 				else
 					if stack:get_definition().acc_slot == "both_hand_acc" and (player_accessory_slots[index] == "l_hand_acc" or player_accessory_slots[index] == "r_hand_acc") then
@@ -108,7 +108,7 @@ minetest.register_on_joinplayer(function(player)
 			local accSlot = player_accessory_slots[index]
 			update_player_acc_visuals(player,stack,1,accSlot,index)
 			local ser_acc_table = {}
-			for serAcc,accStack in ipairs(inv:get_list("accs")) do
+			for serAcc,accStack in ipairs(inv:get_list("gear_ss")) do
 				table.insert(ser_acc_table, accStack:to_string())
 			end
 			playerMeta:set_string("accessory_inv",(minetest.serialize(ser_acc_table)))
@@ -123,7 +123,7 @@ minetest.register_on_joinplayer(function(player)
 			local accSlot = player_accessory_slots[index]
 			update_player_acc_visuals(player,stack,0,accSlot,index)
 			local ser_acc_table = {}
-			for serAcc,accStack in ipairs(inv:get_list("accs")) do
+			for serAcc,accStack in ipairs(inv:get_list("gear_ss")) do
 				table.insert(ser_acc_table, accStack:to_string())
 			end
 			playerMeta:set_string("accessory_inv",(minetest.serialize(ser_acc_table)))
@@ -145,14 +145,14 @@ minetest.register_on_joinplayer(function(player)
 		on_move = function(inv, from_list, from_index, to_list, to_index, count, player)
 			--search for the gear slot that matches the color slot and change gear color
 			local from_slot = player_accessory_slots[from_index]
-			local from_inv = minetest.get_inventory({type="detached", name="accs_"..name..""})
-			local from_stack = from_inv:get_stack("accs", from_index)
+			local from_inv = minetest.get_inventory({type="detached", name="accs_gear_"..name..""})
+			local from_stack = from_inv:get_stack("gear_ss", from_index)
 			if from_stack:get_definition().acc_slot ~= nil then
 				update_player_acc_visuals(player, from_stack, 1, from_slot, from_index)
 			end
 			local to_slot = player_accessory_slots[to_index]
-			local to_inv = minetest.get_inventory({type="detached", name="accs_"..name..""})
-			local to_stack = to_inv:get_stack("accs", to_index)
+			local to_inv = minetest.get_inventory({type="detached", name="accs_gear_"..name..""})
+			local to_stack = to_inv:get_stack("gear_ss", to_index)
 			if to_stack:get_definition().acc_slot ~= nil then
 				update_player_acc_visuals(player, to_stack, 1, to_slot, to_index)
 			end
@@ -168,8 +168,8 @@ minetest.register_on_joinplayer(function(player)
 			--search for the gear slot that matches the color slot and change gear color
 			local accSlot = player_accessory_slots[index]
 			update_player_acc_visuals(player,stack,1,accSlot,index)
-			local a_inv = minetest.get_inventory({type="detached",name="accs_"..name..""})
-			local current_acc_stack = a_inv:get_stack("accs",index)
+			local a_inv = minetest.get_inventory({type="detached",name="accs_gear_"..name..""})
+			local current_acc_stack = a_inv:get_stack("gear_ss",index)
 			if current_acc_stack:get_definition().acc_slot ~= nil then
 				update_player_acc_visuals(player,current_acc_stack,1,accSlot,index)
 			end
@@ -182,8 +182,8 @@ minetest.register_on_joinplayer(function(player)
 		on_take = function(inv,listname,index,stack,player)
 			--search for the gear slot that matches the color slot and change gear color
 			local accSlot = player_accessory_slots[index]
-			local a_inv = minetest.get_inventory({type="detached",name="accs_"..name..""})
-			local current_acc_stack = a_inv:get_stack("accs",index)
+			local a_inv = minetest.get_inventory({type="detached",name="accs_gear_"..name..""})
+			local current_acc_stack = a_inv:get_stack("gear_ss",index)
 			if current_acc_stack:get_definition().acc_slot ~= nil then
 				update_player_acc_visuals(player,current_acc_stack,1,accSlot,index)
 			end
@@ -202,8 +202,8 @@ minetest.register_on_joinplayer(function(player)
 		for serAcc,accStack in ipairs(accList) do
 			table.insert(accItemList, ItemStack(accStack))
 		end
-		local inv = minetest.get_inventory({type="detached",name="accs_"..name..""})
-		inv:set_list("accs",accItemList)
+		local inv = minetest.get_inventory({type="detached",name="accs_gear_"..name..""})
+		inv:set_list("gear_ss",accItemList)
 	end
 
 	if accessory_dye_content ~= nil then
@@ -218,9 +218,9 @@ minetest.register_on_joinplayer(function(player)
 
 	minetest.after(0.5, function(player)
 	player_acc_visuals[name] = {head={},body={},l_arm={},r_arm={},l_leg={},r_leg={}}
-	local inv = minetest.get_inventory({type="detached",name="accs_"..name..""})
+	local inv = minetest.get_inventory({type="detached",name="accs_gear_"..name..""})
 	for i = 1,CountOfAccInvSlots do
-		local current_acc_stack = inv:get_stack("accs",i)
+		local current_acc_stack = inv:get_stack("gear_ss",i)
 		if current_acc_stack:get_definition().acc_slot ~= nil then
 			local accessorySlot = player_accessory_slots[i]
 			update_player_acc_visuals(player,current_acc_stack,1,accessorySlot,i)
@@ -240,16 +240,16 @@ end)
 minetest.register_on_player_receive_fields(function(player, formname, fields)
 	if fields["gear_up_gear"] then
 		local name = player:get_player_name()
-		local inv = minetest.get_inventory({type="detached",name="accs_"..name..""})
-		inv:set_size("accs",CountOfAccInvSlots)
-		inv:set_width("accs",8)
+		local inv = minetest.get_inventory({type="detached",name="accs_gear_"..name..""})
+		inv:set_size("gear_ss",CountOfAccInvSlots)
+		inv:set_width("gear_ss",8)
 		display_gear_up_gear_screen(player)
 	end
 	if fields["gear_up_color"] then
 		local name = player:get_player_name()
 		local inv = minetest.get_inventory({type="detached",name="accs_dye_"..name..""})
-		inv:set_size("accs",CountOfAccInvSlots)
-		inv:set_width("accs",8)
+		inv:set_size("gear_ss",CountOfAccInvSlots)
+		inv:set_width("gear_ss",8)
 		display_gear_up_color_screen(player)
 	end
  end)
@@ -471,7 +471,7 @@ end
 
 function apply_accessory_setBonus(player)
 	local name = player:get_player_name()
-	local inv = minetest.get_inventory({type="detached",name="accs_"..name..""})
+	local inv = minetest.get_inventory({type="detached",name="accs_gear_"..name..""})
 	local playerMeta = player:get_meta()
 	playerMeta:set_string("accessory_SetBonus","")
 	playerMeta:set_string("accessory_SetName","")
@@ -480,7 +480,7 @@ function apply_accessory_setBonus(player)
 	for setAcc,setAccs in ipairs(gear_up_gear_sets) do
 		local missingAccSetPart = 0
 		for setAccPart,setAccParts in ipairs(setAccs[2]) do
-			if missingAccSetPart == 0 and inv:contains_item("accs",setAccParts) then
+			if missingAccSetPart == 0 and inv:contains_item("gear_ss",setAccParts) then
 				missingAccSetPart = 0
 			else
 				missingAccSetPart = 1
@@ -541,10 +541,10 @@ function update_accessory_stats(player)
 	local acc_fireRes = 0
 	local TempAccCustStats = {}
 	local name = player:get_player_name()
-	local inv = minetest.get_inventory({type="detached",name="accs_"..name..""})
+	local inv = minetest.get_inventory({type="detached",name="accs_gear_"..name..""})
 	--start for CountOfAccInvSlots--
 	for i = 1,CountOfAccInvSlots do
-		local current_acc_check = inv:get_stack("accs",i)
+		local current_acc_check = inv:get_stack("gear_ss",i)
 		local acc_Meta = current_acc_check:get_meta()
 		--start CustomStat--
 		if current_acc_check:get_definition().acc_CustomStats ~= nil then
@@ -682,8 +682,8 @@ end
 
 
 function PlayerHasAccEquipped(name,accessory)
-	local inv = minetest.get_inventory({type="detached",name="accs_"..name..""})
-	if inv:contains_item("accs",accessory) then
+	local inv = minetest.get_inventory({type="detached",name="accs_gear_"..name..""})
+	if inv:contains_item("gear_ss",accessory) then
 		return true
 	else
 		return false
@@ -691,10 +691,10 @@ function PlayerHasAccEquipped(name,accessory)
 end
 
 function PlayerHasAccGroupEquipped(name,accessoryGroup)
-	local inv = minetest.get_inventory({type="detached",name="accs_"..name..""})
+	local inv = minetest.get_inventory({type="detached",name="accs_gear_"..name..""})
 	local TheAccGroupIsEquipped = 0
 	for i = 1,CountOfAccInvSlots do
-		local current_acc_stack = inv:get_stack("accs",i)
+		local current_acc_stack = inv:get_stack("gear_ss",i)
 		if minetest.get_item_group(current_acc_stack:get_name(), accessoryGroup) > 0 then
 			TheAccGroupIsEquipped = 1
 		end
