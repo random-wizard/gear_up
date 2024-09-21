@@ -26,6 +26,12 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craft({
+	type = "cooking",
+	recipe = "gear_up:tin_helmet",
+	output = "default:tin_ingot 1",
+})
+
 -- tin platemail
 minetest.register_tool("gear_up:tin_platemail", {
 	description = ("Tin Platemail \n"..
@@ -68,6 +74,12 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craft({
+	type = "cooking",
+	recipe = "gear_up:tin_platemail",
+	output = "default:tin_ingot 2",
+})
+
 -- tin leggings
 minetest.register_tool("gear_up:tin_leggings", {
 	description = ("Tin Leggings \n"..
@@ -104,6 +116,12 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craft({
+	type = "cooking",
+	recipe = "gear_up:tin_leggings",
+	output = "default:tin_ingot 2",
+})
+
 -- tin boots
 minetest.register_tool("gear_up:tin_boots", {
 	description = ("Tin Boots \n" ..
@@ -136,4 +154,10 @@ minetest.register_craft({
 		{"default:tin_ingot", "", "default:tin_ingot"},
 		{"default:tin_ingot", "gear_up:padded_boots", "default:tin_ingot"},
 	}
+})
+
+minetest.register_craft({
+	type = "cooking",
+	recipe = "gear_up:tin_boots",
+	output = "default:tin_ingot 1",
 })
