@@ -3,7 +3,8 @@ minetest.register_tool("gear_up:padded_helmet", {
 	description = ("Padded Helmet \n"..
 		core.colorize("#aaaaaa","Equipable \n")..
 		""..
-		core.colorize("#aaaaaa","1 Defense").. ""),
+		core.colorize("#aaaaaa","1 Defense")..
+		""),
 	inventory_image = "padded_helmet_inv.png",
 	acc_defense = 1,
 	acc_slot = "helmet_acc",
@@ -30,7 +31,8 @@ minetest.register_tool("gear_up:padded_armor", {
 	description = ("Padded Armor \n"..
 		core.colorize("#aaaaaa","Equipable \n")..
 		""..
-		core.colorize("#aaaaaa","2 Defense").. ""),
+		core.colorize("#aaaaaa","2 Defense")..
+		""),
 	inventory_image = "padded_armor_inv.png",
 	acc_defense = 2,
 	acc_slot = "armor_acc",
