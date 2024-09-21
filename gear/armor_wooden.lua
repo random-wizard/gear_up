@@ -1,6 +1,10 @@
 -- wooden helmet
 minetest.register_tool("gear_up:wooden_helmet", {
-	description = ("Wooden Helmet \n" ..core.colorize("#aaaaaa","Equipable \n").. "" ..core.colorize("#aaaaaa","1 Defense").. ""),
+	description = ("Wooden Helmet \n"..
+		core.colorize("#aaaaaa","Equipable \n")..
+		""..
+		core.colorize("#aaaaaa","1 Defense")..
+		""),
 	inventory_image = "wooden_helmet_inv.png",
 	acc_defense = 1,
 	acc_slot = "helmet_acc",
@@ -23,7 +27,11 @@ minetest.register_craft({
 
 -- wooden armor
 minetest.register_tool("gear_up:wooden_armor", {
-	description = ("Wooden armor \n" ..core.colorize("#aaaaaa","Equipable \n").. "" ..core.colorize("#aaaaaa","2 Defense").. ""),
+	description = ("Wooden armor \n"..
+		core.colorize("#aaaaaa","Equipable \n")..
+		""..
+		core.colorize("#aaaaaa","2 Defense")..
+		""),
 	inventory_image = "wooden_armor_inv.png",
 	acc_defense = 2,
 	acc_slot = "armor_acc",
@@ -48,7 +56,11 @@ minetest.register_craft({
 
 -- wooden leggings
 minetest.register_tool("gear_up:wooden_leggings", {
-	description = ("Wooden Leggings \n" ..core.colorize("#aaaaaa","Equipable \n").. "" ..core.colorize("#aaaaaa","2 Defense").. ""),
+	description = ("Wooden Leggings \n"..
+		core.colorize("#aaaaaa","Equipable \n")..
+		""..
+		core.colorize("#aaaaaa","2 Defense")..
+		""),
 	inventory_image = "wooden_leggings_inv.png",
 	acc_defense = 1,
 	acc_slot = "pants_acc",
