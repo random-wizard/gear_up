@@ -4,6 +4,9 @@ Mod for minetest to allow character to equip items; jewelry, armor, outfits, etc
 
 Code hacked together from mod equippable accessories. https://content.minetest.net/packages/davidthecreator/equippable_accessories/
 
+Even though this mod has it's own name space of gear_up, I would not recommend running this mod in conjuction with equippable_accessories. It will produce a lot of duplicate items that do the same thing but are different. It will produce duplicate inventory tabs that do similar things but are different.
+
+
 ![flying-angel-wings-example](https://random-wizard.github.io/gear-up/assets/flying-angel-wings-example.jpg)
 ![inventory-armor-icon-example](https://random-wizard.github.io/gear-up/assets/inventory-armor-icon-example.jpg)
 ![wooden-crate-sand-example](https://random-wizard.github.io/gear-up/assets/wooden-crate-sand-example.jpg)
