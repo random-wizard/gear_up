@@ -1,6 +1,10 @@
 -- steel helmet
 minetest.register_tool("gear_up:steel_helmet", {
-	description = ("Steel Helmet \n" ..core.colorize("#aaaaaa","Equipable \n").. "" ..core.colorize("#aaaaaa","4 Defense").. ""),
+	description = ("Steel Helmet \n"..
+		core.colorize("#aaaaaa","Equipable \n")..
+		""..
+		core.colorize("#aaaaaa","4 Defense")..
+		""),
 	inventory_image = "steel_helmet_inv.png",
 	acc_defense = 4,
 
@@ -24,7 +28,11 @@ minetest.register_craft({
 
 -- steel scalemail
 minetest.register_tool("gear_up:steel_scalemail", {
-	description = ("Steel Scalemail \n" ..core.colorize("#aaaaaa","Equipable \n").. "" ..core.colorize("#aaaaaa","5 Defense").. ""),
+	description = ("Steel Scalemail \n"..
+		core.colorize("#aaaaaa","Equipable \n")..
+		""..
+		core.colorize("#aaaaaa","5 Defense")..
+		""),
 	inventory_image = "steel_scalemail_inv.png",
 	acc_defense = 5,
 
@@ -62,7 +70,11 @@ minetest.register_craft({
 
 -- steel leggings
 minetest.register_tool("gear_up:steel_leggings", {
-	description = ("Steel Leggings \n" ..core.colorize("#aaaaaa","Equipable \n").. "" ..core.colorize("#aaaaaa","4 Defense").. ""),
+	description = ("Steel Leggings \n"..
+		core.colorize("#aaaaaa","Equipable \n")..
+		""..
+		core.colorize("#aaaaaa","4 Defense")..
+		""),
 	inventory_image = "steel_leggings_inv.png",
 	acc_defense = 4,
 
@@ -94,7 +106,13 @@ minetest.register_craft({
 
 -- steel gauntlets
 minetest.register_tool("gear_up:steel_gauntlets", {
-	description = ("Steel Gauntlets\n" ..core.colorize("#aaaaaa","Equipable \n").. "" ..core.colorize("#aaaaaa","+4% Attack Damage \n").. "" ..core.colorize("#aaaaaa","2 Defense").. ""),
+	description = ("Steel Gauntlets\n"..
+		core.colorize("#aaaaaa","Equipable \n")..
+		""..
+		core.colorize("#aaaaaa","+4% Attack Damage \n")..
+		""..
+		core.colorize("#aaaaaa","2 Defense")..
+		""),
 	inventory_image = "steel_gauntlets_inv.png",
 	acc_defense = 2,
 	acc_offense = 4,
