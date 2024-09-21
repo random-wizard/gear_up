@@ -1,6 +1,12 @@
 -- molten helmet
 minetest.register_tool("gear_up:molten_helmet", {
-	description = ("Molten Helmet \n" ..core.colorize("#aaaaaa","Equipable \n").. "" ..core.colorize("#aaaaaa","+7% Attack damage \n").. "" ..core.colorize("#aaaaaa","9 Defense").. ""),
+	description = ("Molten Helmet \n"..
+		core.colorize("#aaaaaa","Equipable \n")..
+		""..
+		core.colorize("#aaaaaa","+7% Attack damage \n")..
+		""..
+		core.colorize("#aaaaaa","9 Defense")..
+		""),
 	inventory_image = "molten_helmet_inv.png",
 	acc_defense = 9,
 	acc_offense = 7,
@@ -25,7 +31,13 @@ minetest.register_craft({
 
 -- molten armor
 minetest.register_tool("gear_up:molten_armor", {
-	description = ("Molten armor \n" ..core.colorize("#aaaaaa","Equipable \n").. "" ..core.colorize("#aaaaaa","+7% Attack damage \n").. "" ..core.colorize("#aaaaaa","10 Defense").. ""),
+	description = ("Molten armor \n"..
+		core.colorize("#aaaaaa","Equipable \n")..
+		""..
+		core.colorize("#aaaaaa","+7% Attack damage \n")..
+		""..
+		core.colorize("#aaaaaa","10 Defense")..
+		""),
 	inventory_image = "molten_armor_inv.png",
 	acc_defense = 10,
 	acc_offense = 7,
@@ -66,7 +78,11 @@ minetest.register_craft({
 
 -- molten leggings
 minetest.register_tool("gear_up:molten_leggings", {
-	description = ("Molten Leggings \n" ..core.colorize("#aaaaaa","Equipable \n").. "" ..core.colorize("#aaaaaa","+6% Attack damage \n").. "" ..core.colorize("#aaaaaa","8 Defense").. ""),
+	description = ("Molten Leggings \n"..
+		core.colorize("#aaaaaa","Equipable \n")..
+		""..core.colorize("#aaaaaa","+6% Attack damage \n")..
+		""..core.colorize("#aaaaaa","8 Defense")..
+		""),
 	inventory_image = "molten_leggings_inv.png",
 	acc_defense = 8,
 	acc_offense = 6,
