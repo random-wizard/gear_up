@@ -25,6 +25,12 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craft({
+    type = 'fuel',
+    recipe = 'gear_up:wooden_helmet',
+    burntime = 2,
+})
+
 -- wooden armor
 minetest.register_tool("gear_up:wooden_armor", {
 	description = ("Wooden armor \n"..
@@ -52,6 +58,12 @@ minetest.register_craft({
 		{"group:wood", "group:wood", "group:wood"},
 		{"group:wood", "group:wood", "group:wood"},
 	}
+})
+
+minetest.register_craft({
+    type = 'fuel',
+    recipe = 'gear_up:wooden_armor',
+    burntime = 3,
 })
 
 -- wooden leggings
@@ -87,4 +99,10 @@ minetest.register_craft({
 		{"group:wood", "", "group:wood"},
 		{"group:wood", "", "group:wood"},
 	}
+})
+
+minetest.register_craft({
+    type = 'fuel',
+    recipe = 'gear_up:wooden_leggings',
+    burntime = 3,
 })
