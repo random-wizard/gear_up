@@ -78,8 +78,8 @@ minetest.register_on_joinplayer(function(player)
 		playerMeta:set_string("accessory_color_inv",(minetest.serialize(temp_empty_dyeaccs_table)))
 	end
 
-	local accessory_content = minetest.deserialize(playerMeta:get_string("accessory_gear_inv"))
-	local accessory_dye_content = minetest.deserialize(playerMeta:get_string("accessory_color_inv"))
+	local accessory_gear_content = minetest.deserialize(playerMeta:get_string("accessory_gear_inv"))
+	local accessory_color_content = minetest.deserialize(playerMeta:get_string("accessory_color_inv"))
 
 	--gear_up_gear
 	--"accs_gear_"..name..""
@@ -203,7 +203,7 @@ minetest.register_on_joinplayer(function(player)
 	})
 	--stop create_detached_inventory color_ss--
 
-	if accessory_content ~= nil then
+	if accessory_gear_content ~= nil then
 		local accList = minetest.deserialize(playerMeta:get_string("accessory_gear_inv"))
 		local accItemList = {}
 		for serAcc,accStack in ipairs(accList) do
@@ -213,7 +213,7 @@ minetest.register_on_joinplayer(function(player)
 		inv:set_list("gear_ss",accItemList)
 	end
 
-	if accessory_dye_content ~= nil then
+	if accessory_color_content ~= nil then
 		local accList = minetest.deserialize(playerMeta:get_string("accessory_color_inv"))
 		local accItemList = {}
 		for serAcc,accStack in ipairs(accList) do
