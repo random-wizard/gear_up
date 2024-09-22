@@ -26,6 +26,12 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craft({
+	type = "cooking",
+	recipe = "gear_up:golden_helmet",
+	output = "default:gold_ingot 1",
+})
+
 -- golden platemail
 minetest.register_tool("gear_up:golden_platemail", {
 	description = ("Golden Platemail \n"..
@@ -68,6 +74,12 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craft({
+	type = "cooking",
+	recipe = "gear_up:golden_platemail",
+	output = "default:gold_ingot 2",
+})
+
 -- golden leggings
 minetest.register_tool("gear_up:golden_leggings", {
 	description = ("Golden Leggings \n"..
@@ -104,6 +116,12 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craft({
+	type = "cooking",
+	recipe = "gear_up:golden_leggings",
+	output = "default:gold_ingot 2",
+})
+
 -- golden boots
 minetest.register_tool("gear_up:golden_boots", {
 	description = ("Golden Boots \n"..
@@ -136,4 +154,10 @@ minetest.register_craft({
 		{"default:gold_ingot", "", "default:gold_ingot"},
 		{"default:gold_ingot", "gear_up:padded_boots", "default:gold_ingot"},
 	}
+})
+
+minetest.register_craft({
+	type = "cooking",
+	recipe = "gear_up:golden_boots",
+	output = "default:gold_ingot 1",
 })
