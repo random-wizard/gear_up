@@ -26,6 +26,12 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craft({
+	type = "cooking",
+	recipe = "gear_up:silver_helmet",
+	output = "default:silver_ingot 1",
+})
+
 -- silver platemail
 minetest.register_tool("gear_up:silver_platemail", {
 	description = ("Silver Platemail \n"..
@@ -67,6 +73,12 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craft({
+	type = "cooking",
+	recipe = "gear_up:silver_platemail",
+	output = "default:silver_ingot 2",
+})
+
 -- silver leggings
 minetest.register_tool("gear_up:silver_leggings", {
 	description = ("Silver Leggings \n"..
@@ -101,4 +113,10 @@ minetest.register_craft({
 		{"moreores:silver_ingot", "gear_up:padded_leggings", "moreores:silver_ingot"},
 		{"moreores:silver_ingot", "", "moreores:silver_ingot"},
 	}
+})
+
+minetest.register_craft({
+	type = "cooking",
+	recipe = "gear_up:silver_leggings",
+	output = "default:silver_ingot 2",
 })
