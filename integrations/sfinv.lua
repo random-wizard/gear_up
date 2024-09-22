@@ -2,9 +2,9 @@
 		title = "Gear",
 		get = function(self, player, context)
 			local name = player:get_player_name()
-			local inv = minetest.get_inventory({type="detached",name="accs_gear_"..name..""})
-			inv:set_size("gear_ss",CountOfAccInvSlots)
-			inv:set_width("gear_ss",8)
+			local inv_gear = minetest.get_inventory({type="detached",name="accs_gear_"..name..""})
+			inv_gear:set_size("gear_ss",CountOfAccInvSlots)
+			inv_gear:set_width("gear_ss",8)
 			local playerMeta = player:get_meta()
 			local gear_up_gear_formspec =(
 				"size[8,11]"..

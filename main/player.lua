@@ -209,8 +209,8 @@ minetest.register_on_joinplayer(function(player)
 		for serAcc,accStack in ipairs(accList) do
 			table.insert(accItemList, ItemStack(accStack))
 		end
-		local inv = minetest.get_inventory({type="detached",name="accs_gear_"..name..""})
-		inv:set_list("gear_ss",accItemList)
+		local inv_gear = minetest.get_inventory({type="detached",name="accs_gear_"..name..""})
+		inv_gear:set_list("gear_ss",accItemList)
 	end
 
 	if accessory_color_content ~= nil then
@@ -219,15 +219,15 @@ minetest.register_on_joinplayer(function(player)
 		for serAcc,accStack in ipairs(accList) do
 			table.insert(accItemList, ItemStack(accStack))
 		end
-		local inv = minetest.get_inventory({type="detached",name="accs_color_"..name..""})
-		inv:set_list("color_ss",accItemList)
+		local inv_color = minetest.get_inventory({type="detached",name="accs_color_"..name..""})
+		inv_color:set_list("color_ss",accItemList)
 	end
 
 	minetest.after(0.5, function(player)
 	player_acc_visuals[name] = {head={},body={},l_arm={},r_arm={},l_leg={},r_leg={}}
-	local inv = minetest.get_inventory({type="detached",name="accs_gear_"..name..""})
+	local inv_gear = minetest.get_inventory({type="detached",name="accs_gear_"..name..""})
 	for i = 1,CountOfAccInvSlots do
-		local current_acc_stack = inv:get_stack("gear_ss",i)
+		local current_acc_stack = inv_gear:get_stack("gear_ss",i)
 		if current_acc_stack:get_definition().acc_slot ~= nil then
 			local accessorySlot = player_accessory_slots[i]
 			update_player_acc_visuals(player,current_acc_stack,1,accessorySlot,i)
@@ -248,16 +248,16 @@ end)
 minetest.register_on_player_receive_fields(function(player, formname, fields)
 	if fields["gear_up_gear"] then
 		local name = player:get_player_name()
-		local inv = minetest.get_inventory({type="detached",name="accs_gear_"..name..""})
-		inv:set_size("gear_ss",CountOfAccInvSlots)
-		inv:set_width("gear_ss",8)
+		local inv_gear = minetest.get_inventory({type="detached",name="accs_gear_"..name..""})
+		inv_gear:set_size("gear_ss",CountOfAccInvSlots)
+		inv_gear:set_width("gear_ss",8)
 		display_gear_up_gear_screen(player)
 	end
 	if fields["gear_up_color"] then
 		local name = player:get_player_name()
-		local inv = minetest.get_inventory({type="detached",name="accs_color_"..name..""})
-		inv:set_size("gear_ss",CountOfAccInvSlots)
-		inv:set_width("gear_ss",8)
+		local inv_color = minetest.get_inventory({type="detached",name="accs_color_"..name..""})
+		inv_color:set_size("gear_ss",CountOfAccInvSlots)
+		inv_color:set_width("gear_ss",8)
 		display_gear_up_color_screen(player)
 	end
  end)
@@ -310,8 +310,8 @@ function update_player_acc_visuals(player,accessory,addtype,accessorySlot,index)
 			player_acc_visuals[name].head[accessorySlot]:set_attach(player,"Head",headPos,{x=0,y=180,z=0} )
 			player_acc_visuals[name].head[accessorySlot]:set_animation(headAnim,24,0)
 			local dyeStuff = ""
-			local dye_inv = minetest.get_inventory({type="detached",name="accs_color_"..name..""})
-			local current_dye_stack = dye_inv:get_stack("color_ss",index)
+			local inv_color = minetest.get_inventory({type="detached",name="accs_color_"..name..""})
+			local current_dye_stack = inv_color:get_stack("color_ss",index)
 			if current_dye_stack:get_definition().accessory_dye ~= nil then
 				dyeStuff = current_dye_stack:get_definition().accessory_dye
 			end
@@ -335,8 +335,8 @@ function update_player_acc_visuals(player,accessory,addtype,accessorySlot,index)
 			player_acc_visuals[name].body[accessorySlot]:set_attach(player,"Body",bodyPos,{x=0,y=180,z=0} )
 			player_acc_visuals[name].body[accessorySlot]:set_animation(bodyAnim,24,0)
 			local dyeStuff = ""
-			local dye_inv = minetest.get_inventory({type="detached",name="accs_color_"..name..""})
-			local current_dye_stack = dye_inv:get_stack("color_ss",index)
+			local inv_color = minetest.get_inventory({type="detached",name="accs_color_"..name..""})
+			local current_dye_stack = inv_color:get_stack("color_ss",index)
 			if current_dye_stack:get_definition().accessory_dye ~= nil then
 				dyeStuff = current_dye_stack:get_definition().accessory_dye
 			end
@@ -361,8 +361,8 @@ function update_player_acc_visuals(player,accessory,addtype,accessorySlot,index)
 			player_acc_visuals[name].l_arm[accessorySlot]:set_attach(player,"Arm_Left",l_armPos,{x=0,y=180,z=180} )
 			player_acc_visuals[name].l_arm[accessorySlot]:set_animation(l_armAnim,24,0)
 			local dyeStuff = ""
-			local dye_inv = minetest.get_inventory({type="detached",name="accs_color_"..name..""})
-			local current_dye_stack = dye_inv:get_stack("color_ss",index)
+			local inv_color = minetest.get_inventory({type="detached",name="accs_color_"..name..""})
+			local current_dye_stack = inv_color:get_stack("color_ss",index)
 			if current_dye_stack:get_definition().accessory_dye ~= nil then
 				dyeStuff = current_dye_stack:get_definition().accessory_dye
 			end
@@ -387,8 +387,8 @@ function update_player_acc_visuals(player,accessory,addtype,accessorySlot,index)
 			player_acc_visuals[name].r_arm[accessorySlot]:set_attach(player,"Arm_Right",r_armPos,{x=0,y=180,z=180} )
 			player_acc_visuals[name].r_arm[accessorySlot]:set_animation(r_armAnim,24,0)
 			local dyeStuff = ""
-			local dye_inv = minetest.get_inventory({type="detached",name="accs_color_"..name..""})
-			local current_dye_stack = dye_inv:get_stack("color_ss",index)
+			local inv_color = minetest.get_inventory({type="detached",name="accs_color_"..name..""})
+			local current_dye_stack = inv_color:get_stack("color_ss",index)
 			if current_dye_stack:get_definition().accessory_dye ~= nil then
 				dyeStuff = current_dye_stack:get_definition().accessory_dye
 			end
@@ -413,8 +413,8 @@ function update_player_acc_visuals(player,accessory,addtype,accessorySlot,index)
 			player_acc_visuals[name].l_leg[accessorySlot]:set_attach(player,"Leg_Left",l_legPos,{x=0,y=0,z=180} )
 			player_acc_visuals[name].l_leg[accessorySlot]:set_animation(l_legAnim,24,0)
 			local dyeStuff = ""
-			local dye_inv = minetest.get_inventory({type="detached",name="accs_color_"..name..""})
-			local current_dye_stack = dye_inv:get_stack("color_ss",index)
+			local inv_color = minetest.get_inventory({type="detached",name="accs_color_"..name..""})
+			local current_dye_stack = inv_color:get_stack("color_ss",index)
 			if current_dye_stack:get_definition().accessory_dye ~= nil then
 				dyeStuff = current_dye_stack:get_definition().accessory_dye
 			end
@@ -439,8 +439,8 @@ function update_player_acc_visuals(player,accessory,addtype,accessorySlot,index)
 			player_acc_visuals[name].r_leg[accessorySlot]:set_attach(player,"Leg_Right",r_legPos,{x=0,y=0,z=180} )
 			player_acc_visuals[name].r_leg[accessorySlot]:set_animation(r_legAnim,24,0)
 			local dyeStuff = ""
-			local dye_inv = minetest.get_inventory({type="detached",name="accs_color_"..name..""})
-			local current_dye_stack = dye_inv:get_stack("color_ss",index)
+			local inv_color = minetest.get_inventory({type="detached",name="accs_color_"..name..""})
+			local current_dye_stack = inv_color:get_stack("color_ss",index)
 			if current_dye_stack:get_definition().accessory_dye ~= nil then
 				dyeStuff = current_dye_stack:get_definition().accessory_dye
 			end
@@ -479,7 +479,7 @@ end
 
 function apply_accessory_setBonus(player)
 	local name = player:get_player_name()
-	local inv = minetest.get_inventory({type="detached",name="accs_gear_"..name..""})
+	local inv_gear = minetest.get_inventory({type="detached",name="accs_gear_"..name..""})
 	local playerMeta = player:get_meta()
 	playerMeta:set_string("accessory_SetBonus","")
 	playerMeta:set_string("accessory_SetName","")
@@ -488,7 +488,7 @@ function apply_accessory_setBonus(player)
 	for setAcc,setAccs in ipairs(gear_up_gear_sets) do
 		local missingAccSetPart = 0
 		for setAccPart,setAccParts in ipairs(setAccs[2]) do
-			if missingAccSetPart == 0 and inv:contains_item("gear_ss",setAccParts) then
+			if missingAccSetPart == 0 and inv_gear:contains_item("gear_ss",setAccParts) then
 				missingAccSetPart = 0
 			else
 				missingAccSetPart = 1
@@ -549,10 +549,10 @@ function update_accessory_stats(player)
 	local acc_fireRes = 0
 	local TempAccCustStats = {}
 	local name = player:get_player_name()
-	local inv = minetest.get_inventory({type="detached",name="accs_gear_"..name..""})
+	local inv_gear = minetest.get_inventory({type="detached",name="accs_gear_"..name..""})
 	--start for CountOfAccInvSlots--
 	for i = 1,CountOfAccInvSlots do
-		local current_acc_check = inv:get_stack("gear_ss",i)
+		local current_acc_check = inv_gear:get_stack("gear_ss",i)
 		local acc_Meta = current_acc_check:get_meta()
 		--start CustomStat--
 		if current_acc_check:get_definition().acc_CustomStats ~= nil then
@@ -690,8 +690,8 @@ end
 
 
 function PlayerHasAccEquipped(name,accessory)
-	local inv = minetest.get_inventory({type="detached",name="accs_gear_"..name..""})
-	if inv:contains_item("gear_ss",accessory) then
+	local inv_gear = minetest.get_inventory({type="detached",name="accs_gear_"..name..""})
+	if inv_gear:contains_item("gear_ss",accessory) then
 		return true
 	else
 		return false
@@ -699,10 +699,10 @@ function PlayerHasAccEquipped(name,accessory)
 end
 
 function PlayerHasAccGroupEquipped(name,accessoryGroup)
-	local inv = minetest.get_inventory({type="detached",name="accs_gear_"..name..""})
+	local inv_gear = minetest.get_inventory({type="detached",name="accs_gear_"..name..""})
 	local TheAccGroupIsEquipped = 0
 	for i = 1,CountOfAccInvSlots do
-		local current_acc_stack = inv:get_stack("gear_ss",i)
+		local current_acc_stack = inv_gear:get_stack("gear_ss",i)
 		if minetest.get_item_group(current_acc_stack:get_name(), accessoryGroup) > 0 then
 			TheAccGroupIsEquipped = 1
 		end
