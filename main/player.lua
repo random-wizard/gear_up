@@ -735,7 +735,7 @@ minetest.register_on_player_hpchange(function(player, hp_change, reason)
 			local AttackerDmgBonus = 1
 			if reason.object:is_player() then
 				AttackerDmgBonus = (reason.object:get_meta():get_int("gear_up_gear_offense")/100)+1
-				minetest.chat_send_all("kek")
+				--minetest.chat_send_all("kek")
 			end
 			hp_change = (hp_change*AttackerDmgBonus) + acc_hp_protected
 		end
