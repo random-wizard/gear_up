@@ -63,19 +63,19 @@ minetest.register_on_joinplayer(function(player)
 	local playerMeta = player:get_meta()
 
 	if playerMeta:get_string("accessory_gear_inv") == "" then
-		local temp_empty_accs_table = {}
+		local empty_gear_table = {}
 		for i=1,CountOfAccInvSlots do
-			temp_empty_accs_table[i] = ""
+			empty_gear_table[i] = ""
 		end
-		playerMeta:set_string("accessory_gear_inv",(minetest.serialize(temp_empty_accs_table)))
+		playerMeta:set_string("accessory_gear_inv",(minetest.serialize(empty_gear_table)))
 	end
 
 	if playerMeta:get_string("accessory_color_inv") == "" then
-		local temp_empty_dyeaccs_table = {}
+		local empty_color_table = {}
 		for i=1,CountOfAccInvSlots do
-			temp_empty_dyeaccs_table[i] = ""
+			empty_color_table[i] = ""
 		end
-		playerMeta:set_string("accessory_color_inv",(minetest.serialize(temp_empty_dyeaccs_table)))
+		playerMeta:set_string("accessory_color_inv",(minetest.serialize(empty_color_table)))
 	end
 
 	local accessory_gear_content = minetest.deserialize(playerMeta:get_string("accessory_gear_inv"))
