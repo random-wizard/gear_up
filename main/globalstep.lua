@@ -41,8 +41,8 @@ minetest.register_globalstep(function(dtime)
 				for i = 1,CountOfAccInvSlots do
 					local current_acc_stack = inv_gear:get_stack("gear_ss",i)
 					if current_acc_stack:get_definition().acc_slot ~= nil then
-						local accessorySlot = player_accessory_slots[i]
-						update_player_acc_visuals(player,current_acc_stack,1,accessorySlot,i)
+						local current_slot = player_accessory_slots[i]
+						update_player_acc_visuals(player,current_acc_stack,1,current_slot,i)
 					end
 				end
 			end

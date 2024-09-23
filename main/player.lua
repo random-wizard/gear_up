@@ -229,8 +229,8 @@ minetest.register_on_joinplayer(function(player)
 	for i = 1,CountOfAccInvSlots do
 		local current_acc_stack = inv_gear:get_stack("gear_ss",i)
 		if current_acc_stack:get_definition().acc_slot ~= nil then
-			local accessorySlot = player_accessory_slots[i]
-			update_player_acc_visuals(player,current_acc_stack,1,accessorySlot,i)
+			local current_slot = player_accessory_slots[i]
+			update_player_acc_visuals(player,current_acc_stack,1,current_slot,i)
 		end
 	end
 
@@ -289,7 +289,7 @@ end
 --minetest.register_on_joinplayer
 --minetest.create_detached_inventory
 --minetest.register_globalstep
-function update_player_acc_visuals(player,accessory,addtype,accessorySlot,index)
+function update_player_acc_visuals(player,accessory,addtype,current_slot,index)
 	local name = player:get_player_name()
 	local pos = player:getpos()
 
@@ -303,22 +303,22 @@ function update_player_acc_visuals(player,accessory,addtype,accessorySlot,index)
 			local headAnim = accessory:get_definition().acc_anim_head or {x=0,y=0}
 			local headSize = accessory:get_definition().acc_size_head or {x=2.5,y=2.5}
 			local headGlow = accessory:get_definition().acc_glow_head or 0
-			if player_acc_visuals[name].head[accessorySlot] ~= nil then
-				player_acc_visuals[name].head[accessorySlot]:remove()
+			if player_acc_visuals[name].head[current_slot] ~= nil then
+				player_acc_visuals[name].head[current_slot]:remove()
 			end
-			player_acc_visuals[name].head[accessorySlot] = minetest.add_entity(pos, "gear_up:acc_display_ent")
-			player_acc_visuals[name].head[accessorySlot]:set_attach(player,"Head",headPos,{x=0,y=180,z=0} )
-			player_acc_visuals[name].head[accessorySlot]:set_animation(headAnim,24,0)
+			player_acc_visuals[name].head[current_slot] = minetest.add_entity(pos, "gear_up:acc_display_ent")
+			player_acc_visuals[name].head[current_slot]:set_attach(player,"Head",headPos,{x=0,y=180,z=0} )
+			player_acc_visuals[name].head[current_slot]:set_animation(headAnim,24,0)
 			local dyeStuff = ""
 			local inv_color = minetest.get_inventory({type="detached",name="accs_color_"..name..""})
 			local current_dye_stack = inv_color:get_stack("color_ss",index)
 			if current_dye_stack:get_definition().accessory_dye ~= nil then
 				dyeStuff = current_dye_stack:get_definition().accessory_dye
 			end
-			player_acc_visuals[name].head[accessorySlot]:set_properties({textures={""..headTexture..""..dyeStuff}})
-			player_acc_visuals[name].head[accessorySlot]:set_properties({mesh=""..headModel..""})
-			player_acc_visuals[name].head[accessorySlot]:set_properties({visual_size=headSize})
-			player_acc_visuals[name].head[accessorySlot]:set_properties({glow=headGlow})
+			player_acc_visuals[name].head[current_slot]:set_properties({textures={""..headTexture..""..dyeStuff}})
+			player_acc_visuals[name].head[current_slot]:set_properties({mesh=""..headModel..""})
+			player_acc_visuals[name].head[current_slot]:set_properties({visual_size=headSize})
+			player_acc_visuals[name].head[current_slot]:set_properties({glow=headGlow})
 		end
 
 		if minetest.get_item_group(itemname, "body_accessory") > 0 then
@@ -328,25 +328,25 @@ function update_player_acc_visuals(player,accessory,addtype,accessorySlot,index)
 			local bodyAnim = accessory:get_definition().acc_anim_body or {x=0,y=0}
 			local bodySize = accessory:get_definition().acc_size_body or {x=2.5,y=2.5}
 			local bodyGlow = accessory:get_definition().acc_glow_body or 0
-			if player_acc_visuals[name].body[accessorySlot] ~= nil then
-				player_acc_visuals[name].body[accessorySlot]:remove()
+			if player_acc_visuals[name].body[current_slot] ~= nil then
+				player_acc_visuals[name].body[current_slot]:remove()
 			end
-			player_acc_visuals[name].body[accessorySlot] = minetest.add_entity(pos, "gear_up:acc_display_ent")
-			player_acc_visuals[name].body[accessorySlot]:set_attach(player,"Body",bodyPos,{x=0,y=180,z=0} )
-			player_acc_visuals[name].body[accessorySlot]:set_animation(bodyAnim,24,0)
+			player_acc_visuals[name].body[current_slot] = minetest.add_entity(pos, "gear_up:acc_display_ent")
+			player_acc_visuals[name].body[current_slot]:set_attach(player,"Body",bodyPos,{x=0,y=180,z=0} )
+			player_acc_visuals[name].body[current_slot]:set_animation(bodyAnim,24,0)
 			local dyeStuff = ""
 			local inv_color = minetest.get_inventory({type="detached",name="accs_color_"..name..""})
 			local current_dye_stack = inv_color:get_stack("color_ss",index)
 			if current_dye_stack:get_definition().accessory_dye ~= nil then
 				dyeStuff = current_dye_stack:get_definition().accessory_dye
 			end
-			player_acc_visuals[name].body[accessorySlot]:set_properties({textures={""..bodyTexture..""..dyeStuff}})
-			player_acc_visuals[name].body[accessorySlot]:set_properties({mesh=""..bodyModel..""})
-			player_acc_visuals[name].body[accessorySlot]:set_properties({visual_size=bodySize})
-			player_acc_visuals[name].body[accessorySlot]:set_properties({glow=bodyGlow})
+			player_acc_visuals[name].body[current_slot]:set_properties({textures={""..bodyTexture..""..dyeStuff}})
+			player_acc_visuals[name].body[current_slot]:set_properties({mesh=""..bodyModel..""})
+			player_acc_visuals[name].body[current_slot]:set_properties({visual_size=bodySize})
+			player_acc_visuals[name].body[current_slot]:set_properties({glow=bodyGlow})
 		end
 
-		if minetest.get_item_group(itemname, "l_arm_accessory") > 0 and accessorySlot ~= "r_hand_acc" and accessorySlot ~= "r_ring_acc" then
+		if minetest.get_item_group(itemname, "l_arm_accessory") > 0 and current_slot ~= "r_hand_acc" and current_slot ~= "r_ring_acc" then
 			local l_armModel = accessory:get_definition().acc_model_l_arm or
 			("simple_hand.b3d")
 			local l_armTexture = accessory:get_definition().acc_texture_l_arm or ("simple_test_hand.png")
@@ -354,25 +354,25 @@ function update_player_acc_visuals(player,accessory,addtype,accessorySlot,index)
 			local l_armAnim = accessory:get_definition().acc_anim_l_arm or {x=0,y=0}
 			local l_armSize = accessory:get_definition().acc_size_l_arm or {x=2.4,y=2.4}
 			local l_armGlow = accessory:get_definition().acc_glow_l_arm or 0
-			if player_acc_visuals[name].l_arm[accessorySlot] ~= nil then
-				player_acc_visuals[name].l_arm[accessorySlot]:remove()
+			if player_acc_visuals[name].l_arm[current_slot] ~= nil then
+				player_acc_visuals[name].l_arm[current_slot]:remove()
 			end
-			player_acc_visuals[name].l_arm[accessorySlot] = minetest.add_entity(pos, "gear_up:acc_display_ent")
-			player_acc_visuals[name].l_arm[accessorySlot]:set_attach(player,"Arm_Left",l_armPos,{x=0,y=180,z=180} )
-			player_acc_visuals[name].l_arm[accessorySlot]:set_animation(l_armAnim,24,0)
+			player_acc_visuals[name].l_arm[current_slot] = minetest.add_entity(pos, "gear_up:acc_display_ent")
+			player_acc_visuals[name].l_arm[current_slot]:set_attach(player,"Arm_Left",l_armPos,{x=0,y=180,z=180} )
+			player_acc_visuals[name].l_arm[current_slot]:set_animation(l_armAnim,24,0)
 			local dyeStuff = ""
 			local inv_color = minetest.get_inventory({type="detached",name="accs_color_"..name..""})
 			local current_dye_stack = inv_color:get_stack("color_ss",index)
 			if current_dye_stack:get_definition().accessory_dye ~= nil then
 				dyeStuff = current_dye_stack:get_definition().accessory_dye
 			end
-			player_acc_visuals[name].l_arm[accessorySlot]:set_properties({textures={""..l_armTexture..""..dyeStuff}})
-			player_acc_visuals[name].l_arm[accessorySlot]:set_properties({mesh=""..l_armModel..""})
-			player_acc_visuals[name].l_arm[accessorySlot]:set_properties({visual_size=l_armSize})
-			player_acc_visuals[name].l_arm[accessorySlot]:set_properties({glow=l_armGlow})
+			player_acc_visuals[name].l_arm[current_slot]:set_properties({textures={""..l_armTexture..""..dyeStuff}})
+			player_acc_visuals[name].l_arm[current_slot]:set_properties({mesh=""..l_armModel..""})
+			player_acc_visuals[name].l_arm[current_slot]:set_properties({visual_size=l_armSize})
+			player_acc_visuals[name].l_arm[current_slot]:set_properties({glow=l_armGlow})
 		end
 
-		if minetest.get_item_group(itemname, "r_arm_accessory") > 0 and accessorySlot ~= "l_hand_acc" and accessorySlot ~= "l_ring_acc" then
+		if minetest.get_item_group(itemname, "r_arm_accessory") > 0 and current_slot ~= "l_hand_acc" and current_slot ~= "l_ring_acc" then
 			local r_armModel = accessory:get_definition().acc_model_r_arm or
 			("simple_hand.b3d")
 			local r_armTexture = accessory:get_definition().acc_texture_r_arm or ("simple_test_hand.png")
@@ -380,22 +380,22 @@ function update_player_acc_visuals(player,accessory,addtype,accessorySlot,index)
 			local r_armAnim = accessory:get_definition().acc_anim_r_arm or {x=0,y=0}
 			local r_armSize = accessory:get_definition().acc_size_r_arm or {x=2.4,y=2.4}
 			local r_armGlow = accessory:get_definition().acc_glow_r_arm or 0
-			if player_acc_visuals[name].r_arm[accessorySlot] ~= nil then
-				player_acc_visuals[name].r_arm[accessorySlot]:remove()
+			if player_acc_visuals[name].r_arm[current_slot] ~= nil then
+				player_acc_visuals[name].r_arm[current_slot]:remove()
 			end
-			player_acc_visuals[name].r_arm[accessorySlot] = minetest.add_entity(pos, "gear_up:acc_display_ent")
-			player_acc_visuals[name].r_arm[accessorySlot]:set_attach(player,"Arm_Right",r_armPos,{x=0,y=180,z=180} )
-			player_acc_visuals[name].r_arm[accessorySlot]:set_animation(r_armAnim,24,0)
+			player_acc_visuals[name].r_arm[current_slot] = minetest.add_entity(pos, "gear_up:acc_display_ent")
+			player_acc_visuals[name].r_arm[current_slot]:set_attach(player,"Arm_Right",r_armPos,{x=0,y=180,z=180} )
+			player_acc_visuals[name].r_arm[current_slot]:set_animation(r_armAnim,24,0)
 			local dyeStuff = ""
 			local inv_color = minetest.get_inventory({type="detached",name="accs_color_"..name..""})
 			local current_dye_stack = inv_color:get_stack("color_ss",index)
 			if current_dye_stack:get_definition().accessory_dye ~= nil then
 				dyeStuff = current_dye_stack:get_definition().accessory_dye
 			end
-			player_acc_visuals[name].r_arm[accessorySlot]:set_properties({textures={""..r_armTexture..""..dyeStuff}})
-			player_acc_visuals[name].r_arm[accessorySlot]:set_properties({mesh=""..r_armModel..""})
-			player_acc_visuals[name].r_arm[accessorySlot]:set_properties({visual_size=r_armSize})
-			player_acc_visuals[name].r_arm[accessorySlot]:set_properties({glow=r_armGlow})
+			player_acc_visuals[name].r_arm[current_slot]:set_properties({textures={""..r_armTexture..""..dyeStuff}})
+			player_acc_visuals[name].r_arm[current_slot]:set_properties({mesh=""..r_armModel..""})
+			player_acc_visuals[name].r_arm[current_slot]:set_properties({visual_size=r_armSize})
+			player_acc_visuals[name].r_arm[current_slot]:set_properties({glow=r_armGlow})
 		end
 
 		if minetest.get_item_group(itemname, "l_leg_accessory") > 0 then
@@ -406,22 +406,22 @@ function update_player_acc_visuals(player,accessory,addtype,accessorySlot,index)
 			local l_legAnim = accessory:get_definition().acc_anim_l_leg or {x=0,y=0}
 			local l_legSize = accessory:get_definition().acc_size_l_leg or {x=2.4,y=2.4}
 			local l_legGlow = accessory:get_definition().acc_glow_l_leg or 0
-			if player_acc_visuals[name].l_leg[accessorySlot] ~= nil then
-				player_acc_visuals[name].l_leg[accessorySlot]:remove()
+			if player_acc_visuals[name].l_leg[current_slot] ~= nil then
+				player_acc_visuals[name].l_leg[current_slot]:remove()
 			end
-			player_acc_visuals[name].l_leg[accessorySlot] = minetest.add_entity(pos, "gear_up:acc_display_ent")
-			player_acc_visuals[name].l_leg[accessorySlot]:set_attach(player,"Leg_Left",l_legPos,{x=0,y=0,z=180} )
-			player_acc_visuals[name].l_leg[accessorySlot]:set_animation(l_legAnim,24,0)
+			player_acc_visuals[name].l_leg[current_slot] = minetest.add_entity(pos, "gear_up:acc_display_ent")
+			player_acc_visuals[name].l_leg[current_slot]:set_attach(player,"Leg_Left",l_legPos,{x=0,y=0,z=180} )
+			player_acc_visuals[name].l_leg[current_slot]:set_animation(l_legAnim,24,0)
 			local dyeStuff = ""
 			local inv_color = minetest.get_inventory({type="detached",name="accs_color_"..name..""})
 			local current_dye_stack = inv_color:get_stack("color_ss",index)
 			if current_dye_stack:get_definition().accessory_dye ~= nil then
 				dyeStuff = current_dye_stack:get_definition().accessory_dye
 			end
-			player_acc_visuals[name].l_leg[accessorySlot]:set_properties({textures={""..l_legTexture..""..dyeStuff}})
-			player_acc_visuals[name].l_leg[accessorySlot]:set_properties({mesh=""..l_legModel..""})
-			player_acc_visuals[name].l_leg[accessorySlot]:set_properties({visual_size=l_legSize})
-			player_acc_visuals[name].l_leg[accessorySlot]:set_properties({glow=l_legGlow})
+			player_acc_visuals[name].l_leg[current_slot]:set_properties({textures={""..l_legTexture..""..dyeStuff}})
+			player_acc_visuals[name].l_leg[current_slot]:set_properties({mesh=""..l_legModel..""})
+			player_acc_visuals[name].l_leg[current_slot]:set_properties({visual_size=l_legSize})
+			player_acc_visuals[name].l_leg[current_slot]:set_properties({glow=l_legGlow})
 		end
 
 		if minetest.get_item_group(itemname, "r_leg_accessory") > 0 then
@@ -432,22 +432,22 @@ function update_player_acc_visuals(player,accessory,addtype,accessorySlot,index)
 			local r_legAnim = accessory:get_definition().acc_anim_r_leg or {x=0,y=0}
 			local r_legSize = accessory:get_definition().acc_size_r_leg or {x=2.4,y=2.4}
 			local r_legGlow = accessory:get_definition().acc_glow_r_leg or 0
-			if player_acc_visuals[name].r_leg[accessorySlot] ~= nil then
-				player_acc_visuals[name].r_leg[accessorySlot]:remove()
+			if player_acc_visuals[name].r_leg[current_slot] ~= nil then
+				player_acc_visuals[name].r_leg[current_slot]:remove()
 			end
-			player_acc_visuals[name].r_leg[accessorySlot] = minetest.add_entity(pos, "gear_up:acc_display_ent")
-			player_acc_visuals[name].r_leg[accessorySlot]:set_attach(player,"Leg_Right",r_legPos,{x=0,y=0,z=180} )
-			player_acc_visuals[name].r_leg[accessorySlot]:set_animation(r_legAnim,24,0)
+			player_acc_visuals[name].r_leg[current_slot] = minetest.add_entity(pos, "gear_up:acc_display_ent")
+			player_acc_visuals[name].r_leg[current_slot]:set_attach(player,"Leg_Right",r_legPos,{x=0,y=0,z=180} )
+			player_acc_visuals[name].r_leg[current_slot]:set_animation(r_legAnim,24,0)
 			local dyeStuff = ""
 			local inv_color = minetest.get_inventory({type="detached",name="accs_color_"..name..""})
 			local current_dye_stack = inv_color:get_stack("color_ss",index)
 			if current_dye_stack:get_definition().accessory_dye ~= nil then
 				dyeStuff = current_dye_stack:get_definition().accessory_dye
 			end
-			player_acc_visuals[name].r_leg[accessorySlot]:set_properties({textures={""..r_legTexture..""..dyeStuff}})
-			player_acc_visuals[name].r_leg[accessorySlot]:set_properties({mesh=""..r_legModel..""})
-			player_acc_visuals[name].r_leg[accessorySlot]:set_properties({visual_size=r_legSize})
-			player_acc_visuals[name].r_leg[accessorySlot]:set_properties({glow=r_legGlow})
+			player_acc_visuals[name].r_leg[current_slot]:set_properties({textures={""..r_legTexture..""..dyeStuff}})
+			player_acc_visuals[name].r_leg[current_slot]:set_properties({mesh=""..r_legModel..""})
+			player_acc_visuals[name].r_leg[current_slot]:set_properties({visual_size=r_legSize})
+			player_acc_visuals[name].r_leg[current_slot]:set_properties({glow=r_legGlow})
 		end
 
 	end
@@ -455,23 +455,23 @@ function update_player_acc_visuals(player,accessory,addtype,accessorySlot,index)
 
 	--start addtype 0--
 	if addtype == 0 then
-		if player_acc_visuals[name].head[accessorySlot] ~= nil then
-			player_acc_visuals[name].head[accessorySlot]:remove()
+		if player_acc_visuals[name].head[current_slot] ~= nil then
+			player_acc_visuals[name].head[current_slot]:remove()
 		end
-		if player_acc_visuals[name].body[accessorySlot] ~= nil then
-			player_acc_visuals[name].body[accessorySlot]:remove()
+		if player_acc_visuals[name].body[current_slot] ~= nil then
+			player_acc_visuals[name].body[current_slot]:remove()
 		end
-		if player_acc_visuals[name].l_arm[accessorySlot] ~= nil then
-			player_acc_visuals[name].l_arm[accessorySlot]:remove()
+		if player_acc_visuals[name].l_arm[current_slot] ~= nil then
+			player_acc_visuals[name].l_arm[current_slot]:remove()
 		end
-		if player_acc_visuals[name].r_arm[accessorySlot] ~= nil then
-			player_acc_visuals[name].r_arm[accessorySlot]:remove()
+		if player_acc_visuals[name].r_arm[current_slot] ~= nil then
+			player_acc_visuals[name].r_arm[current_slot]:remove()
 		end
-		if player_acc_visuals[name].l_leg[accessorySlot] ~= nil then
-			player_acc_visuals[name].l_leg[accessorySlot]:remove()
+		if player_acc_visuals[name].l_leg[current_slot] ~= nil then
+			player_acc_visuals[name].l_leg[current_slot]:remove()
 		end
-		if player_acc_visuals[name].r_leg[accessorySlot] ~= nil then
-			player_acc_visuals[name].r_leg[accessorySlot]:remove()
+		if player_acc_visuals[name].r_leg[current_slot] ~= nil then
+			player_acc_visuals[name].r_leg[current_slot]:remove()
 		end
 	end
 	--stop addtype 0--
