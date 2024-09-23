@@ -48,11 +48,11 @@ end
 function display_gear_up_select_screen(player)
 	local name = player:get_player_name()
 	local playerMeta = player:get_meta()
-	local AccSelectUI =(
+	local gear_up_select_form =(
 		"size[6,9]"..
-		"label[2.0,1.0;Bling Bling]"..
+		"label[2.0,1.0;Gear Up Select]"..
 		"button[1,3.0;4,1;gear_up_gear;Gear]"..
 		"button[1,5.0;4,1;gear_up_color;Color]"..
 		"button_exit[1,7.5;4,1;exit;Done]")
-	minetest.show_formspec(name,"gear_up:AccSelectUI", AccSelectUI)
+	minetest.show_formspec(name,"gear_up:gear_up_select_form", gear_up_select_form)
 end
