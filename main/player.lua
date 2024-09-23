@@ -109,8 +109,8 @@ minetest.register_on_joinplayer(function(player)
 			end
 		end,
 		on_put = function(inv_gear,listname,index,stack,player)
-			local accSlot = player_accessory_slots[index]
-			update_player_acc_visuals(player,stack,1,accSlot,index)
+			local current_slot = player_accessory_slots[index]
+			update_player_acc_visuals(player,stack,1,current_slot,index)
 			local ser_acc_table = {}
 			for serAcc,accStack in ipairs(inv_gear:get_list("gear_ss")) do
 				table.insert(ser_acc_table, accStack:to_string())
@@ -124,8 +124,8 @@ minetest.register_on_joinplayer(function(player)
 			--display_gear_up_gear_screen(player)
 		end,
 		on_take = function(inv_gear,listname,index,stack,player)
-			local accSlot = player_accessory_slots[index]
-			update_player_acc_visuals(player,stack,0,accSlot,index)
+			local current_slot = player_accessory_slots[index]
+			update_player_acc_visuals(player,stack,0,current_slot,index)
 			local ser_acc_table = {}
 			for serAcc,accStack in ipairs(inv_gear:get_list("gear_ss")) do
 				table.insert(ser_acc_table, accStack:to_string())
@@ -173,12 +173,12 @@ minetest.register_on_joinplayer(function(player)
 		end,
 		on_put = function(inv_color,listname,index,stack,player)
 			--search for the gear slot that matches the color slot and change gear color
-			local accSlot = player_accessory_slots[index]
-			update_player_acc_visuals(player,stack,1,accSlot,index)
+			local current_slot = player_accessory_slots[index]
+			update_player_acc_visuals(player,stack,1,current_slot,index)
 			local a_inv = minetest.get_inventory({type="detached",name="accs_gear_"..name..""})
 			local current_acc_stack = a_inv:get_stack("gear_ss",index)
 			if current_acc_stack:get_definition().acc_slot ~= nil then
-				update_player_acc_visuals(player,current_acc_stack,1,accSlot,index)
+				update_player_acc_visuals(player,current_acc_stack,1,current_slot,index)
 			end
 			local ser_acc_table = {}
 			for serAcc,accStack in ipairs(inv_color:get_list("color_ss")) do
@@ -188,11 +188,11 @@ minetest.register_on_joinplayer(function(player)
 		end,
 		on_take = function(inv_color,listname,index,stack,player)
 			--search for the gear slot that matches the color slot and change gear color
-			local accSlot = player_accessory_slots[index]
+			local current_slot = player_accessory_slots[index]
 			local a_inv = minetest.get_inventory({type="detached",name="accs_gear_"..name..""})
 			local current_acc_stack = a_inv:get_stack("gear_ss",index)
 			if current_acc_stack:get_definition().acc_slot ~= nil then
-				update_player_acc_visuals(player,current_acc_stack,1,accSlot,index)
+				update_player_acc_visuals(player,current_acc_stack,1,current_slot,index)
 			end
 			local ser_acc_table = {}
 			for serAcc,accStack in ipairs(inv_color:get_list("color_ss")) do
