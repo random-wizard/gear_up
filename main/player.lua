@@ -224,17 +224,16 @@ minetest.register_on_joinplayer(function(player)
 	end
 
 	minetest.after(0.5, function(player)
-	player_acc_visuals[name] = {head={},body={},l_arm={},r_arm={},l_leg={},r_leg={}}
-	local inv_gear = minetest.get_inventory({type="detached",name="accs_gear_"..name..""})
-	for i = 1,CountOfAccInvSlots do
-		local current_acc_stack = inv_gear:get_stack("gear_ss",i)
-		if current_acc_stack:get_definition().acc_slot ~= nil then
-			local current_slot = player_accessory_slots[i]
-			update_player_acc_visuals(player,current_acc_stack,1,current_slot,i)
+		player_acc_visuals[name] = {head={},body={},l_arm={},r_arm={},l_leg={},r_leg={}}
+		local inv_gear = minetest.get_inventory({type="detached",name="accs_gear_"..name..""})
+		for i = 1,CountOfAccInvSlots do
+			local current_acc_stack = inv_gear:get_stack("gear_ss",i)
+			if current_acc_stack:get_definition().acc_slot ~= nil then
+				local current_slot = player_accessory_slots[i]
+				update_player_acc_visuals(player,current_acc_stack,1,current_slot,i)
+			end
 		end
-	end
-
-	update_accessory_stats(player)
+		update_accessory_stats(player)
 	end, player)
 
 end)
