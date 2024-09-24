@@ -83,27 +83,27 @@ minetest.register_globalstep(function(dtime)
 			end
 
 			--check if wielded item has stats and capabilities
-			local WieldItemstack = player:get_wielded_item()
-			local itmStackMeta = WieldItemstack:get_meta()
-			if WieldItemstack:get_tool_capabilities() ~= nil and WieldItemstack:get_definition().tool_capabilities and WieldItemstack:get_name() ~= "" then
-				if itmStackMeta:get_int("LastAccDigEffc") ~= playerMeta:get_int("gear_up_gear_dig_speed") then
-					itmStackMeta:set_int("LastAccDigEffc",playerMeta:get_int("gear_up_gear_dig_speed"))
-					if itmStackMeta:get_string("ToolOldStats") == "" then
-						itmStackMeta:set_string("ToolOldStats",minetest.serialize(WieldItemstack:get_tool_capabilities().groupcaps))
+			local wielded_item = player:get_wielded_item()
+			local item_meta = wielded_item:get_meta()
+			if wielded_item:get_tool_capabilities() ~= nil and wielded_item:get_definition().tool_capabilities and wielded_item:get_name() ~= "" then
+				if item_meta:get_int("LastAccDigEffc") ~= playerMeta:get_int("gear_up_gear_dig_speed") then
+					item_meta:set_int("LastAccDigEffc",playerMeta:get_int("gear_up_gear_dig_speed"))
+					if item_meta:get_string("ToolOldStats") == "" then
+						item_meta:set_string("ToolOldStats",minetest.serialize(wielded_item:get_tool_capabilities().groupcaps))
 					end
-					local ToolNewStats = minetest.deserialize(itmStackMeta:get_string("ToolOldStats"))
+					local ToolNewStats = minetest.deserialize(item_meta:get_string("ToolOldStats"))
 					for toolStatValue, toolStatValues in pairs(ToolNewStats) do
 						for toolStatTime, toolStatTimes in pairs(ToolNewStats[toolStatValue].times) do
 							ToolNewStats[toolStatValue].times[toolStatTime] = ToolNewStats[toolStatValue].times[toolStatTime] / (1+(playerMeta:get_int("gear_up_gear_dig_speed")/100))
 						end
 					end
-					itmStackMeta:set_tool_capabilities({
-						full_punch_interval = WieldItemstack:get_definition().tool_capabilities.full_punch_interval,
-						max_drop_level = WieldItemstack:get_definition().tool_capabilities.max_drop_level,
+					item_meta:set_tool_capabilities({
+						full_punch_interval = wielded_item:get_definition().tool_capabilities.full_punch_interval,
+						max_drop_level = wielded_item:get_definition().tool_capabilities.max_drop_level,
 						groupcaps = ToolNewStats,
-						damage_groups = WieldItemstack:get_definition().tool_capabilities.damage_groups,
+						damage_groups = wielded_item:get_definition().tool_capabilities.damage_groups,
 					})
-					player:set_wielded_item(WieldItemstack)
+					player:set_wielded_item(wielded_item)
 				end
 			end
 
