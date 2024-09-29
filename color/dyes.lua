@@ -319,7 +319,7 @@ minetest.register_craft({
 	output = "gear_up:dyejar_gold 1",
 	recipe = {
 		{"", "default:gold_ingot", ""},
-		{"", "gear_up:dyejar_gold", ""},
+		{"", "gear_up:dyejar_yellow", ""},
 	}
 })
 
