@@ -108,7 +108,7 @@ minetest.register_globalstep(function(dtime)
 			end
 
 			--check if mining helmet and use glow
-			if PlayerHasAccEquipped(player_name,"gear_up:mining_helmet") == true then
+			if is_accessory_equipped(player_name,"gear_up:mining_helmet") == true then
 				local gpos = player:getpos()
 				gpos.y = gpos.y+1
 				local node = minetest.get_node(gpos)
@@ -152,7 +152,7 @@ minetest.register_globalstep(function(dtime)
 			if controls.jump then
 				local playerMeta = player:get_meta()
 				local name = player:get_player_name()
-				if PlayerHasAccGroupEquipped(name,"acc_wings") == true then
+				if is_accessory_group_equipped(name,"acc_wings") == true then
 					if player:get_velocity().y < -1 then
 						player:add_velocity({x=0,y=((player:get_velocity().y)*-0.3) -0.5, z=0})
 					end

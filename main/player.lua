@@ -688,7 +688,7 @@ function update_accessory_stats(player)
 end
 
 
-function PlayerHasAccEquipped(name,accessory)
+function is_accessory_equipped(name,accessory)
 	local inv_gear = minetest.get_inventory({type="detached",name="accs_gear_"..name..""})
 	if inv_gear:contains_item("gear_ss",accessory) then
 		return true
@@ -697,7 +697,7 @@ function PlayerHasAccEquipped(name,accessory)
 	end
 end
 
-function PlayerHasAccGroupEquipped(name,accessoryGroup)
+function is_accessory_group_equipped(name,accessoryGroup)
 	local inv_gear = minetest.get_inventory({type="detached",name="accs_gear_"..name..""})
 	local TheAccGroupIsEquipped = 0
 	for i = 1,CountOfAccInvSlots do
