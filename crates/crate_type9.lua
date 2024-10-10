@@ -19,9 +19,8 @@ minetest.register_node("gear_up:crate_type9", {
 	drop = "",
 	on_dig = function(pos, node, digger)
 		local item_stack = {
-			"default:mese_crystal_fragment",
-			"default:mese_crystal_fragment",
-			"default:mese_crystal_fragment",
+			"default:mese_crystal",
+			"default:diamond",
 			"gear_up:boots_of_haste",
 			"gear_up:heart_amulet",
 			"gear_up:enchanted_stone_shield",
