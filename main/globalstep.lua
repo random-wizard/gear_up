@@ -153,8 +153,8 @@ minetest.register_globalstep(function(dtime)
 				local playerMeta = player:get_meta()
 				local name = player:get_player_name()
 				if PlayerHasAccGroupEquipped(name,"acc_wings") == true then
-					if player:get_player_velocity().y < -1 then
-						player:add_player_velocity({x=0,y=((player:get_player_velocity().y)*-0.3) -0.5, z=0})
+					if player:get_velocity().y < -1 then
+						player:add_velocity({x=0,y=((player:get_velocity().y)*-0.3) -0.5, z=0})
 					end
 					if playerMeta:get_float("fly_time_left") > 0 then
 						playerMeta:set_float("fly_time_left",playerMeta:get_float("fly_time_left")-dtime)
