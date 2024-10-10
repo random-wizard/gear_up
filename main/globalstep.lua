@@ -158,7 +158,7 @@ minetest.register_globalstep(function(dtime)
 					end
 					if playerMeta:get_float("fly_time_left") > 0 then
 						playerMeta:set_float("fly_time_left",playerMeta:get_float("fly_time_left")-dtime)
-						player:add_player_velocity({x=0,y= playerMeta:get_float("accessory_flightForce"), z=0})
+						player:add_velocity({x=0,y= playerMeta:get_float("accessory_flightForce"), z=0})
 					end
 				end
 			end
